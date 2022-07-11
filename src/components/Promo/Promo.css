@@ -1,0 +1,21 @@
+.promo {
+    height: 524px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background-image: url('../../images/promo-background.svg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-color: #073042;
+}
+
+.promo__title {
+    margin: 0 auto;
+    width: 80%;
+    text-align: center;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 50px;
+    line-height: 58px;
+    color: #FFFFFF;
+}
