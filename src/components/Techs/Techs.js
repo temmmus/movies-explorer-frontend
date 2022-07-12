@@ -3,7 +3,7 @@ import SectionTitle from '../SectionTitle/SectionTitle';
 
 function Techs() {
     return (
-        <section className="techs">
+        <section className="techs" id="section-techs">
             <SectionTitle text="Технологии"/>
             <article className="techs__content">
                 <h3 className="techs__title">7 технологий</h3>

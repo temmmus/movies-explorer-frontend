@@ -3,7 +3,7 @@ import SectionTitle from '../SectionTitle/SectionTitle';
 
 function AboutProject() {
     return (
-        <section className="about">
+        <section className="about" id="section-about-project">
             <SectionTitle text="О проекте"/>
             <div className="about__content">
                 <article className="about__article">

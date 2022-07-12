@@ -1,0 +1,37 @@
+.card {
+    position: relative;
+    list-style: none;
+    margin: 0;
+    width: 270px;
+}
+
+.card__image {
+    object-fit: cover;
+}
+.card__image:hover {
+    opacity: 0.9;
+    cursor: pointer;
+  }
+
+.card__wrapper {
+    margin-top: 14px;
+    margin-bottom: 29px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.card__title {
+    margin: 0;
+    font-weight: 500;
+    font-size: 11px;
+    line-height: 15.73px;
+}
+
+.card__text {
+    padding-top: 6px;
+    font-weight: 400;
+    font-size: 13px;
+    line-height: 13.31px;
+    color: #A0A0A0;
+    border-top: 1px solid #E8E8E8;
+}

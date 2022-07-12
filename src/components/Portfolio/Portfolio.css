@@ -37,7 +37,6 @@
 .portfolio__link-icon {
     display: block;
     width: 29px;
-    height: 60px;
     background-image: url('../../images/portfolio-link-icon.svg');
     background-repeat: no-repeat;
     background-position: center;
