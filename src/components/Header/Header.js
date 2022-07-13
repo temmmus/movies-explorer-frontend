@@ -9,7 +9,7 @@ function Header({theme, loggedIn}) {
       // <header className={`header ${theme === 'dark' ? 'header_theme_dark' : null}`}>
       <header className='header header_theme_white'>
         <Logo />
-        <nav className="header__links">
+        <nav className="header__links header__links_logedin">
           <div className='header__wrapper'>
             <Link className='header__link header__link_color_black' to='/movies'>Фильмы</Link>
             <Link className='header__link header__link_color_black' to='/saved-movies'>Сохраненные фильмы</Link>
