@@ -11,8 +11,8 @@ function Header({theme, loggedIn}) {
         <Logo />
         <nav className="header__links header__links_logedin">
           <div className='header__wrapper'>
-            <Link className='header__link header__link_color_black' to='/movies'>Фильмы</Link>
-            <Link className='header__link header__link_color_black' to='/saved-movies'>Сохраненные фильмы</Link>
+            <Link className={`header__link header__link_color_black ${window.location.pathname === '/movies' ? 'header__link_active' : null}`} to='/movies'>Фильмы</Link>
+            <Link className={`header__link header__link_color_black ${window.location.pathname === '/saved-movies' ? 'header__link_active' : null}`} to='/saved-movies'>Сохраненные фильмы</Link>
           </div>
           <Link className='header__link header__link_type_button header__link_type_rounded-button header__link_color_black' to='/profile'>
             <img src={image} alt="Профиль" className="header__icon"/>
