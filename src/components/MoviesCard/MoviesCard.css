@@ -23,8 +23,22 @@
 .card__title {
     margin: 0;
     font-weight: 500;
-    font-size: 11px;
+    font-size: 13px;
     line-height: 15.73px;
+}
+
+.card__like-button {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%; 
+    border: none;
+    background-image: url('../../images/like-icon-active.svg');
+    background-repeat: no-repeat;
+    background-position: center;
+}
+.card__like-button:hover {
+    opacity: 0.8;
+    cursor: pointer;
 }
 
 .card__text {
@@ -35,3 +49,4 @@
     color: #A0A0A0;
     border-top: 1px solid #E8E8E8;
 }
+

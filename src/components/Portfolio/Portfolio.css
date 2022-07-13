@@ -27,12 +27,21 @@
     display: flex;
     justify-content: space-between;
     color: #000000;
+    transition: opacity 0.2s linear;
+}
+.portfolio__link:hover {
+    opacity: 0.8;
+    cursor: pointer;
 }
 
 .portfolio__list-item {
     padding-bottom: 19px;
     border-bottom: 1px solid #E6E6E6;
 }
+/* .portfolio__list-item:hover {
+    opacity: 0.8;
+    cursor: pointer;
+} */
 
 .portfolio__link-icon {
     display: block;

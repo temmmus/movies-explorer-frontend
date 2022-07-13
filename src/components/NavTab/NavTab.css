@@ -21,4 +21,9 @@
     font-size: 13px;
     line-height: 16px;
     color: #FFFFFF;
+    transition: opacity 0.2s linear;
+}
+.navtab__link:hover {
+    opacity: 0.8;
+    cursor: pointer;
 }

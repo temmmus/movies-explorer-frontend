@@ -3,7 +3,7 @@ import MoviesCard from '../MoviesCard/MoviesCard';
 
 function MoviesCardList() {
   return (
-      <ul  className="cards">
+      <ul className="card-list">
         <MoviesCard/>
         <MoviesCard/>
         <MoviesCard/>

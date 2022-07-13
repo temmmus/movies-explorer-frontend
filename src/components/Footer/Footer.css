@@ -44,4 +44,9 @@
     font-size: 13px;
     line-height: 15.73px;
     color: #000000;
+    transition: opacity 0.2s linear;
+}
+.footer__link:hover {
+    opacity: 0.8;
+    cursor: pointer;
 }

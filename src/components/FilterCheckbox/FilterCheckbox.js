@@ -2,9 +2,9 @@ import './FilterCheckbox.css';
 
 function FilterCheckbox() {
   return (
-    <label className='search__toggle'>         
-        <input type='checkbox' name='toggle'/>
-        <span className="search__slider"></span>
+    <label className='toggle'>         
+        <input type='checkbox' name='toggle' className='toggle__input'/>
+        <span className='toggle__slider'></span>
     </label>
   );
 }
