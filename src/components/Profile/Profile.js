@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 function Profile() {
   return (
     <div className='profile'>
-        <Header/>
+        <Header loggedIn={true}/>
         <h2 className='profile__header'>Привет, Штакет!</h2>
         <form className='profile__form'>
           <div className='profile__wrapper'>

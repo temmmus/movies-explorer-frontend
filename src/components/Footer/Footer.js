@@ -11,7 +11,7 @@ function Footer() {
                 <li><a href="https://practicum.yandex.ru/" target="_blank" rel="noreferrer" className="footer__link">Яндекс.Практикум</a></li>
                 <li><a href="https://github.com/" target="_blank" rel="noreferrer" className="footer__link">Github</a></li>
                 <li><a href="https://www.facebook.com/" target="_blank" rel="noreferrer" className="footer__link">Facebook</a></li>
-               </ul>
+              </ul>
             </nav>
       </footer>
     );

@@ -7,10 +7,10 @@ import Footer from '../Footer/Footer';
 function Movies() {
   return (
     <div className="movies">
-        <Header/>
-        <SearchForm/>
-        <MoviesCardList/>
-        <Footer/>
+      <Header loggedIn={true}/>
+      <SearchForm/>
+      <MoviesCardList/>
+      <Footer/>
     </div>
   );
 }
