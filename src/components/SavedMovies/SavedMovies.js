@@ -1,13 +1,17 @@
 import './SavedMovies.css';
-import MoviesCard from '../MoviesCard/MoviesCard';
+import Header from '../Header/Header';
+import SearchForm from '../SearchForm/SearchForm';
+import MoviesCardList from '../MoviesCardList/MoviesCardList';
+import Footer from '../Footer/Footer';
 
 function SavedMovies() {
   return (
-    <ul className="card-list">
-      <MoviesCard/>
-      <MoviesCard/>
-      <MoviesCard/>
-    </ul>
+    <div className="saved-movies">
+      <Header loggedIn={true}/>
+      <SearchForm/>
+      <MoviesCardList/>
+      <Footer/>
+    </div>
   );
 }
 
