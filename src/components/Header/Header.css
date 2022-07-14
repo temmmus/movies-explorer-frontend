@@ -1,15 +1,8 @@
 .header {
-    outline: 1px dashed red;
     max-width: 1280px;
-    padding: 20px 70px;
+    padding: 18px 70px;
     display: flex;
     justify-content: space-between;
-}
-
-@media screen and (max-width: 768px) {
-    .header {
-        padding: 18px 30px;
-    }
 }
 
 .header_theme_white {
@@ -18,9 +11,12 @@
 .header_theme_dark {
     background-color: #073042;
 }
+.header__wrapper {
+    display: flex;
+    gap: 16px;
+}
 
 .header__links {
-    width: 100%;
     margin: 0;
     padding: 0;
     margin-left: 44px;
@@ -28,6 +24,7 @@
     display: flex;
     align-items: center;
     justify-content: flex-end;
+    gap: 16px;
 }
 
 .header__links_logedin {
@@ -36,7 +33,6 @@
 
 .header__link {
     text-decoration: none;
-    margin-right: 16px;
     font-weight: 400;
     font-size: 12px;
     line-height: 16px;
@@ -78,4 +74,29 @@
     width: 12px;
     height: 14px;
     margin-right: 7px;
+}
+
+@media screen and (max-width: 768px) {
+    .header {
+        padding: 18px 30px;
+    }
+}
+
+@media screen and (max-width: 320px) {
+    .header {
+        padding: 18px 14px;
+    }
+}
+
+@media screen and (max-width: 320px) {
+    .header__link {
+        font-weight: 500;
+        font-size: 10px;
+    }
+}
+
+@media screen and (max-width: 320px) {
+    .header__link_type_rectangular-button  {
+        width: 54px;
+    }
 }

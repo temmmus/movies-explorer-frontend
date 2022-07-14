@@ -1,5 +1,5 @@
 .app {
-  /* width: 1280px; */
+  max-width: 1280px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -8,5 +8,11 @@
 @media screen and (max-width: 768px) {
   .app {
     max-width: 768px;
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .app {
+    max-width: 320px;
   }
 }
