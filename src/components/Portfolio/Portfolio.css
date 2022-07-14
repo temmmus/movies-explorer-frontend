@@ -63,3 +63,9 @@
         font-size: 28px;
     }
 }
+
+@media screen and (max-width: 320px) {
+    .portfolio {
+        padding: 0 18px;
+    }
+}

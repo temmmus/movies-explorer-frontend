@@ -12,3 +12,10 @@
         padding-top: 90px;
     }
 }
+@media screen and (max-width: 320px) {
+    .section-title {
+        padding-top: 70px;
+        font-size: 18px;
+        line-height: 21.78px;
+    }
+}
