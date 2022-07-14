@@ -2,7 +2,7 @@ import './SectionTitle.css';
 
 function SectionTitle({text}) {
     return (
-            <h2 className="section-title">{text}</h2>
+        <h2 className="section-title">{text}</h2>
     );
   }
   

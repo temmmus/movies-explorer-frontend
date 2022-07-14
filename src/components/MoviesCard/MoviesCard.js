@@ -8,7 +8,7 @@ function MoviesCard() {
         <h3 className='card__title'>Название фильма</h3>
         <p className='card__text'>1ч 42м</p>
       </div>
-      <img className='card__image' alt='' src={image} />
+      <img className='card__image' alt='Постер' src={image} />
       <button type='button' className='card__like-button'>Сохранить</button>
     </li>
   );

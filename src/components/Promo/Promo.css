@@ -57,3 +57,49 @@
 .promo__image {
     width: 310px;
 }
+
+
+@media screen and (max-width: 768px) {
+    .promo {
+        width: 768px;
+        height: 850px;
+        padding: 0;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .promo__image {
+        order: 1;
+        margin-top: 140px;
+        margin-bottom: 48px;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .promo__wrapper {
+        order: 2;
+        width: 680px;
+        text-align: center;
+        align-items: center;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .promo__title {
+        margin-bottom: 22px;
+        font-size: 40px;
+        line-height: 50px;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .promo__text {
+        margin-bottom: 92px;
+    }
+}
+
+
+

@@ -1,6 +1,6 @@
 .footer {
     padding: 0 48px;
-    margin-top: 92px;
+    margin-top: 79px;
     margin-bottom: 24px;
     display: flex;
     flex-direction: column;
@@ -49,4 +49,10 @@
 .footer__link:hover {
     opacity: 0.8;
     cursor: pointer;
+}
+
+@media screen and (max-width: 768px) {
+    .footer {
+        padding: 0 30px;
+    }
 }

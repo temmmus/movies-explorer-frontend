@@ -68,3 +68,15 @@
     line-height: 16.94px;
     color: #A0A0A0;
 }
+
+@media screen and (max-width: 768px) {
+    .about {
+        padding: 0 50px;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .about__content {
+        column-gap: 30px;
+    }
+}
