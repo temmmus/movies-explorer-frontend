@@ -9,3 +9,18 @@
     row-gap: 32px;
     column-gap: 28px;
 }
+
+@media screen and (max-width: 780px) {
+    .card-list {
+        /* grid-template-rows: repeat(3, auto); */
+        grid-template-columns: repeat(2, auto);
+        row-gap: 35px;
+        column-gap: 24 px;
+    }
+}
+  
+@media screen and (max-width: 320px) {
+    .card-list {
+        grid-template-columns: repeat(1, auto);
+    }
+}

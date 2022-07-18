@@ -69,13 +69,13 @@
     color: #A0A0A0;
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 780px) {
     .about {
         padding: 0 50px;
     }
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 780px) {
     .about__content {
         margin-top: 60px;
         column-gap: 30px;

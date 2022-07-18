@@ -1,0 +1,23 @@
+.upload-button {
+    width: 320px;
+    height: 36px;
+    margin-top: 50px;
+    align-self: center;
+    border-radius: 6px; 
+    border: none;
+    outline: 1px solid #E8E8E8;
+    background-color: #FFFFFF;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 14.52px;
+}
+.upload-button:hover {
+    opacity: 0.8;
+    cursor: pointer;
+}
+
+@media screen and (max-width: 320px) {
+    .upload-button {
+      max-width: 240px;
+    }
+}

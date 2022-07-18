@@ -1,11 +1,10 @@
 .register {
     margin-top: 70px;
     margin-bottom: 300px;
-    width: 396px;
+    width: 40%;
     display: flex;
     flex-direction: column;
     align-items: start;
-
 }
 
 .register__logo {
@@ -91,4 +90,18 @@
     font-size: 14px;
     line-height: 16.94px;
     color: #3456F3;
+}
+
+@media screen and (max-width: 640px) {
+    .register {
+        width: 80%;
+        align-items: center;
+    }
+}
+
+@media screen and (max-width: 640px) {
+    .register__wrapper {
+        flex-direction: column;
+        align-items: center;
+    }
 }

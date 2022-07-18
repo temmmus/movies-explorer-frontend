@@ -75,7 +75,7 @@
     margin-right: 7px;
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 780px) {
     .header {
         padding: 18px 30px;
     }

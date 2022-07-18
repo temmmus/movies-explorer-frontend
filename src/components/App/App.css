@@ -4,9 +4,9 @@
   align-items: center;
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 780px) {
   .app {
-    max-width: 768px;
+    max-width: 780px;
   }
 }
 

@@ -61,5 +61,15 @@
     cursor: pointer;
 }
 
-
+@media screen and (max-width: 780px) {
+    .card {
+        width: 342px;
+    }
+}
+  
+@media screen and (max-width: 320px) {
+    .card {
+        width: 300px;
+    }
+}
 

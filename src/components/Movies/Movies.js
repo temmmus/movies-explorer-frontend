@@ -2,6 +2,7 @@ import './Movies.css';
 import Header from '../Header/Header';
 import SearchForm from '../SearchForm/SearchForm';
 import MoviesCardList from '../MoviesCardList/MoviesCardList';
+import UploadButton from '../UploadButton/UploadButton';
 import Footer from '../Footer/Footer';
 
 function Movies() {
@@ -10,6 +11,7 @@ function Movies() {
       <Header loggedIn={true}/>
       <SearchForm/>
       <MoviesCardList/>
+      <UploadButton/>
       <Footer/>
     </div>
   );

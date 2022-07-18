@@ -1,5 +1,4 @@
 .promo {
-    height: 424px;
     padding: 75px 70px;
     display: flex;
     align-items: start;
@@ -8,7 +7,7 @@
 }
 
 .promo__wrapper {
-    width: 640px;
+    width: 50%;
     display: flex;
     flex-direction: column;
 }
@@ -24,9 +23,9 @@
 }
 
 .promo__text {
-    width: 310px;
+    width: 60%;
     margin: 0;
-    margin-bottom: 146px;
+    margin-bottom: 140px;
     font-style: normal;
     font-weight: 400;
     font-size: 13px;
@@ -55,21 +54,19 @@
 }
 
 .promo__image {
-    width: 310px;
+    width: 30%;
 }
 
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 780px) {
     .promo {
-        height: 850px;
-        padding: 0;
         flex-direction: column;
         align-items: center;
         justify-content: center;
     }
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 780px) {
     .promo__image {
         order: 1;
         margin-top: 140px;
@@ -77,16 +74,16 @@
     }
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 780px) {
     .promo__wrapper {
+        width: 80%;
         order: 2;
-        max-width: 680px;
         text-align: center;
         align-items: center;
     }
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 780px) {
     .promo__title {
         margin-bottom: 22px;
         font-size: 40px;
@@ -94,20 +91,21 @@
     }
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 780px) {
     .promo__text {
+        width: 80%;
         margin-bottom: 92px;
     }
 }
 
 
-@media screen and (max-width: 320px) {
+@media screen and (max-width: 460px) {
     .promo {
         height: 660px;
     }
 }
 
-@media screen and (max-width: 320px) {
+@media screen and (max-width: 460px) {
     .promo__image {
         width: 210px;
         margin-top: 70px;
@@ -115,14 +113,13 @@
     }
 }
 
-@media screen and (max-width: 320px) {
+@media screen and (max-width: 460px) {
     .promo__wrapper {
         order: 2;
-        max-width: 320px;
     }
 }
 
-@media screen and (max-width: 320px) {
+@media screen and (max-width: 460px) {
     .promo__title {
         margin-bottom: 24px;
         font-size: 30px;
@@ -130,9 +127,8 @@
     }
 }
 
-@media screen and (max-width: 320px) {
+@media screen and (max-width: 460px) {
     .promo__text {
-        max-width: 260px;
         margin-bottom: 80px;
     }
 }
