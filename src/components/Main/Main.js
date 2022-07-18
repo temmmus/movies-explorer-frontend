@@ -12,7 +12,7 @@ function Main() {
     <div className="main">
       <Header loggedIn={false}/>
       <main>
-        <Promo/>
+        <Promo/> 
         <AboutProject/>
         <Techs/>
         <AboutMe/>

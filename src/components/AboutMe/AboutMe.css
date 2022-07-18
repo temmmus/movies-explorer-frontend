@@ -3,7 +3,7 @@
 }
 
 .about-me__content {
-    padding-top: 43px;
+    margin-top: 43px;
     display: flex;
     gap: 270px;
 }
@@ -15,18 +15,23 @@
 
 .about-me__title {
     margin: 0;
+    margin-bottom: 18px;
     font-weight: 400;
     font-size: 50px;
     line-height: 58px;
 }
 
 .about-me__subtitle {
+    margin: 0;
+    margin-bottom: 26px;
     font-weight: 500;
     font-size: 18px;
     line-height: 20px;
 }
 
 .about-me__text {
+    margin: 0;
+    margin-bottom: 100px;
     font-weight: 400;
     font-size: 14px;
     line-height: 22px;
@@ -71,6 +76,7 @@
 
 @media screen and (max-width: 768px) {
     .about-me__title {
+        margin-bottom: 16px;
         font-size: 40px;
         line-height: 40px;
     }
@@ -78,6 +84,7 @@
 
 @media screen and (max-width: 768px) {
     .about-me__subtitle {
+        margin-bottom: 20px;
         font-size: 12px;
         line-height: 18px;
     }
@@ -85,6 +92,7 @@
 
 @media screen and (max-width: 768px) {
     .about-me__text {
+        margin-bottom: 85px;
         font-size: 12px;
         line-height: 18px;
     }
@@ -106,5 +114,48 @@
 @media screen and (max-width: 320px) {
     .about-me {
         padding: 0 18px;
+    }
+}
+
+@media screen and (max-width: 320px) {
+    .about-me__content {
+        flex-direction: column;
+        gap: 40px;
+    }
+}
+
+@media screen and (max-width: 320px) {
+    .about-me__article {
+        order: 2;
+    }
+}
+
+@media screen and (max-width: 320px) {
+    .about-me__photo {
+        order: 1;
+    }
+}
+
+@media screen and (max-width: 320px) {
+    .about-me__title {
+        margin-bottom: 20px;
+        font-size: 30px;
+        line-height: 36.31px;
+    }
+}
+
+@media screen and (max-width: 320px) {
+    .about-me__subtitle {
+        margin-bottom: 20px;
+        font-size: 11px;
+        line-height: 16px;
+    }
+}
+
+@media screen and (max-width: 320px) {
+    .about-me__text {
+        margin-bottom: 40px;
+        font-size: 11px;
+        line-height: 16px;
     }
 }

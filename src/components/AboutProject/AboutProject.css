@@ -77,6 +77,7 @@
 
 @media screen and (max-width: 768px) {
     .about__content {
+        margin-top: 60px;
         column-gap: 30px;
     }
 }
@@ -90,6 +91,7 @@
 @media screen and (max-width: 320px) {
     .about__content {
         flex-direction: column;
+        row-gap: 50px;
     }
 }
 
@@ -103,9 +105,21 @@
 
 @media screen and (max-width: 320px) {
     .about__text {
+        margin: 0;
         font-size: 11px;
         line-height: 16px;
-        margin-bottom: 50px;
+    }
+}
+
+@media screen and (max-width: 320px) {
+    .about__timeline-column_left {
+        width: 35%;
+    }
+}
+
+@media screen and (max-width: 320px) {
+    .about__timeline-column_right {
+        width: 65%;
     }
 }
 
@@ -118,8 +132,8 @@
 
 @media screen and (max-width: 320px) {
     .about__timeline-text {
+        margin: 0;
         font-size: 11px;
         line-height: 12.74px;
-        margin-bottom: 70px;
     }
 }
