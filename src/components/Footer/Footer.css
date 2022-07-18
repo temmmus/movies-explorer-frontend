@@ -58,7 +58,7 @@
     }
 }
 
-@media screen and (max-width: 320px) {
+@media screen and (max-width: 460px) {
     .footer {
         padding: 0 18px;
     }
@@ -72,7 +72,7 @@
     }
 }
 
-@media screen and (max-width: 320px) {
+@media screen and (max-width: 460px) {
     .footer__links {
         flex-direction: column;
         align-items: center;
@@ -80,7 +80,7 @@
     }
 }
 
-@media screen and (max-width: 320px) {
+@media screen and (max-width: 460px) {
     .footer__link {
         display: block;
         margin-bottom: 12px;
@@ -89,7 +89,7 @@
     }
 }
 
-@media screen and (max-width: 320px) {
+@media screen and (max-width: 460px) {
     .footer__copyright {
         order: 2;
         margin-top: 30px;

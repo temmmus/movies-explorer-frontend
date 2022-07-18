@@ -4,14 +4,14 @@
   align-items: center;
 }
 
-@media screen and (max-width: 780px) {
+/* @media screen and (max-width: 780px) {
   .app {
     max-width: 780px;
   }
 }
 
-@media screen and (max-width: 320px) {
+@media screen and (max-width: 460px) {
   .app {
-    max-width: 320px;
+    max-width: 460px;
   }
-}
+} */
