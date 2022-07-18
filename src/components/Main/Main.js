@@ -13,10 +13,10 @@ function Main() {
       <Header loggedIn={false}/>
       <main className="main">
         <Promo/> 
-        {/* <AboutProject/> */}
+        <AboutProject/>
         <Techs/>
-        {/* <AboutMe/> */}
-        {/* <Portfolio/> */}
+        <AboutMe/>
+        <Portfolio/>
       </main>
       <Footer/>
     </div>
