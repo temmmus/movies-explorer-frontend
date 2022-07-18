@@ -1,7 +1,6 @@
 .upload-button {
-    width: 320px;
+    width: 40%;
     height: 36px;
-    margin-top: 50px;
     align-self: center;
     border-radius: 6px; 
     border: none;
@@ -14,10 +13,4 @@
 .upload-button:hover {
     opacity: 0.8;
     cursor: pointer;
-}
-
-@media screen and (max-width: 320px) {
-    .upload-button {
-      max-width: 240px;
-    }
 }

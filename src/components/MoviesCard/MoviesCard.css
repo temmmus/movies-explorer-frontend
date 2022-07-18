@@ -2,7 +2,7 @@
     margin: 0;
     padding: 18px 0;
     list-style: none;
-    width: 360px;
+    width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -42,9 +42,9 @@
     color: #A0A0A0;
 }
 
-.card__like-button {
-    width: 100px;
-    height: 29px;
+.card__save-button {
+    width: 50%;
+    height: 30px;
     margin-top: 18px;
     border-radius: 20px; 
     border: none;
@@ -56,20 +56,8 @@
     /* background-repeat: no-repeat;
     background-position: center; */
 }
-.card__like-button:hover {
+.card__save-button:hover {
     opacity: 0.8;
     cursor: pointer;
-}
-
-@media screen and (max-width: 780px) {
-    .card {
-        width: 342px;
-    }
-}
-  
-@media screen and (max-width: 320px) {
-    .card {
-        width: 300px;
-    }
 }
 

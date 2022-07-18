@@ -3,15 +3,3 @@
   flex-direction: column;
   justify-content: center;
 }
-
-@media screen and (max-width: 780px) {
-  .movies {
-    max-width: 780px;
-  }
-}
-  
-@media screen and (max-width: 320px) {
-  .movies {
-    max-width: 320px;
-  }
-}

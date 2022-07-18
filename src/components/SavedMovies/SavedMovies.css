@@ -3,15 +3,3 @@
     flex-direction: column;
     justify-content: center;
 }
-
-@media screen and (max-width: 780px) {
-    .saved-movies {
-        max-width: 780px;
-    }
-}
-  
-@media screen and (max-width: 320px) {
-    .saved-movies {
-        max-width: 320px;
-    }
-}
