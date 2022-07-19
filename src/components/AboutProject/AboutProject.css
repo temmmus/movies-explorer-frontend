@@ -112,6 +112,12 @@
 }
 
 @media screen and (max-width: 460px) {
+    .about__timeline {
+        margin-top: 60px;
+    }
+}
+
+@media screen and (max-width: 460px) {
     .about__timeline-column_left {
         width: 35%;
     }

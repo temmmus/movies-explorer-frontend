@@ -48,16 +48,26 @@
     margin-top: 18px;
     border-radius: 20px; 
     border: none;
-    background-color: #F9F9F9;
-    font-weight: 400;
-    font-size: 12px;
-    line-height: 11px;
-    /* background-image: url('../../images/icon-like-active.svg'); */
-    /* background-repeat: no-repeat;
-    background-position: center; */
 }
 .card__save-button:hover {
     opacity: 0.8;
     cursor: pointer;
 }
-
+.card__save-button_type_inactive:before {
+    content: 'Сохранить';
+    background-color: #F9F9F9;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 11px;
+}
+.card__save-button_type_active {
+    background-color: #FF3055;
+    background-image: url('../../images/icon-tick.svg');
+    background-repeat: no-repeat;
+    background-position: center;
+}
+.card__save-button_type_cancel {
+    background-image: url('../../images/icon-cross.svg');
+    background-repeat: no-repeat;
+    background-position: center;
+}
