@@ -2,6 +2,7 @@
     margin-top: 70px;
     margin-bottom: 300px;
     width: 40%;
+    align-self: center;
     display: flex;
     flex-direction: column;
     align-items: start;
@@ -11,7 +12,7 @@
     margin-bottom: 40px;
 }
 
-.register__header {
+.register__title {
     margin-bottom: 40px;
     font-weight: 500;
     font-size: 24px;

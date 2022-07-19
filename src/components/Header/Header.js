@@ -1,6 +1,6 @@
 import './Header.css';
 import Logo from '../Logo/Logo';
-import image from '../../images/icon-profile.svg';
+import AccountButton from '../AccountButton/AccountButton';
 import { Link } from 'react-router-dom';
 
 function Header({theme, loggedIn}) {
@@ -14,11 +14,9 @@ function Header({theme, loggedIn}) {
             <Link className={`header__link header__link_color_black ${window.location.pathname === '/movies' ? 'header__link_active' : null}`} to='/movies'>Фильмы</Link>
             <Link className={`header__link header__link_color_black ${window.location.pathname === '/saved-movies' ? 'header__link_active' : null}`} to='/saved-movies'>Сохраненные фильмы</Link>
           </div>
-          <Link className='header__link header__link_type_button header__link_type_rounded-button header__link_color_black' to='/profile'>
-            <img src={image} alt="Профиль" className="header__icon"/>
-            Аккаунт
-          </Link>
+          <AccountButton />
         </nav>
+        <button type='button' className='header__burger-menu'></button>
       </header>
     )
   } else {
@@ -28,7 +26,7 @@ function Header({theme, loggedIn}) {
         <Logo />
         <nav className="header__links">
             <Link className='header__link' to='/signup'>Регистрация</Link>
-            <Link className='header__link header__link_type_button header__link_type_rectangular-button header__link_color_black' to='/signin'>Войти</Link>
+            <Link className='header__link header__link_type_button header__link_color_black' to='/signin'>Войти</Link>
         </nav>
       </header>
   )

@@ -6,7 +6,7 @@ function Login() {
   return (
     <div className='login'>
       <Logo />
-      <h2 className='login__header'>Рады видеть!</h2>
+      <h2 className='login__title'>Рады видеть!</h2>
       <form className='login__form'>
         <label htmlFor="password" className='login__input-label'>Пароль</label>
           <input type='password' name='password' className='login__input' required/>

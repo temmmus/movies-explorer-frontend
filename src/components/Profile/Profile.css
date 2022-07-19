@@ -4,13 +4,13 @@
     align-items: center;
 }
 
-.profile__header {
+.profile__title {
     margin-top: 74px;
     margin-bottom: 123px;
 }
 
 .profile__form {
-    width: 60%;
+    width: 40%;
     display: flex;
     flex-direction: column;
 }

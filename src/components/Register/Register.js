@@ -6,7 +6,7 @@ function Register() {
   return (
     <div className='register'>
       <Logo />
-      <h2 className='register__header'>Добро пожаловать!</h2>
+      <h2 className='register__title'>Добро пожаловать!</h2>
       <form className='register__form'>
         <label htmlFor="name" className='register__input-label'>Имя</label>
         <input type='text' name='name' className='register__input' required/>
