@@ -64,7 +64,25 @@ export const getUserInfo = () => {
     .catch((err) => console.log(err));
 };
 
-export const getMovies = () => {
+export const patchUserInfo = (name, email) => {
+  return fetch(`${BASE_URL}/users/me`, {
+    method: 'PATCH',
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': localStorage.getItem('token')
+    },
+    body: JSON.stringify({ name: name, email: email }),
+  })
+  .then((response) => {
+    return response.json();
+  })
+  .then((res) => {
+    return res;
+  })
+  .catch((err) => console.log(err));
+};
+
+export const getSavedMovies = () => {
   return fetch(`${BASE_URL}/movies`, {
     method: 'GET',
     headers: {

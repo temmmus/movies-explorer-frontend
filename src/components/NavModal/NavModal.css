@@ -27,6 +27,7 @@
 .navmodal__close-button {
     width: 22px;
     height: 22px;
+    margin-right: 20px;
     align-self: flex-end;
     border: none;
     background-image: url('../../images/icon-cross-large.svg');

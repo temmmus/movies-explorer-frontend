@@ -10,19 +10,19 @@ import SavedMovies from '../SavedMovies/SavedMovies';
 import NavModal from '../NavModal/NavModal';
 import NotFound from '../NotFound/NotFound';
 import {useNavigate , Routes, Route } from 'react-router-dom';
-import * as api from '../../utils/api.js';
+import * as mainApi from '../../utils/MainApi.js';
 
 function App() {
   const navigate = useNavigate();
   const [loggedIn, setLoggedIn] = useState(false);
   const [currentUser, setCurrentUser] = useState({});
-  const [movies, setMovies] = useState([]);
+  const [savedMovies, setSavedMovies] = useState([]);
 
   useEffect(() => {
     const token = localStorage.getItem('token');
 
     if (token) {
-      api
+      mainApi
         .checkToken(token)
         .then((res) => {
           setLoggedIn(true);
@@ -32,7 +32,7 @@ function App() {
           localStorage.removeItem('token');
         });
 
-      api
+      mainApi
         .getUserInfo()
         .then((res) => {
           setCurrentUser(res);
@@ -41,16 +41,17 @@ function App() {
           console.log(err);
         });
 
-      api
-        .getMovies()
+      mainApi
+        .getSavedMovies()
         .then((res) => {
-          setMovies(res);
+          setSavedMovies(res);
         })
         .catch((err) => {
           console.log(err);
         });
       }
   }, []);
+
 
   // useEffect(() => {
   //   api
@@ -75,7 +76,7 @@ function App() {
   // }, []);
 
   function onRegister({ formValues }) {
-    api.register(formValues.name, formValues.email, formValues.password).then((res) => {
+    mainApi.register(formValues.name, formValues.email, formValues.password).then((res) => {
       if (res.message) {
         console.log(res.message)
       } else {
@@ -86,7 +87,7 @@ function App() {
   }
 
   function onLogin({ formValues }) {
-    api.login(formValues.email, formValues.password).then((res) => {
+    mainApi.login(formValues.email, formValues.password).then((res) => {
       if (res.message) {
         console.log(res.message)
       } else {
@@ -99,6 +100,17 @@ function App() {
   function onLogOut() {
     setLoggedIn(false);
     localStorage.removeItem('token');
+  }
+
+  function handleUpdateUser(name, about) {
+    mainApi
+      .patchUserInfo(name, about)
+      .then((res) => {
+        setCurrentUser(res);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   }
 
   window.onload = () => {
@@ -119,12 +131,12 @@ function App() {
     <div className="app">
       <Routes>
         <Route path='/' element={<Main/>} />
-        <Route path='/signup' element={<Register onRegister={ onRegister }/>} />
-        <Route path='/signin' element={<Login onLogin={ onLogin }/>} />
-        <Route element={<ProtectedRoute loggedIn={ loggedIn } />}>
-          <Route path="/profile" element={<Profile user= { currentUser } onLogOut={ onLogOut } />} />
-          <Route path="/movies" element={<Movies movies={movies} />} />
-          <Route path="/saved-movies" element={<SavedMovies />} />
+        <Route path='/signup' element={<Register onRegister={onRegister}/>} />
+        <Route path='/signin' element={<Login onLogin={onLogin}/>} />
+        <Route element={<ProtectedRoute loggedIn={loggedIn} />}>
+          <Route path="/profile" element={<Profile user= {currentUser} onLogOut={onLogOut} onUpdateUser={handleUpdateUser} />} />
+          <Route path="/movies" element={<Movies />} />
+          <Route path="/saved-movies" element={<SavedMovies movies={ savedMovies } />} />
         </Route> 
         <Route path='*' element={<NotFound/>} />
       </Routes>
