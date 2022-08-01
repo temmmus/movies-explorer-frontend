@@ -43,8 +43,9 @@ function App() {
       }
   }, []);
 
-  function onRegister({ formValues }) {
-    mainApi.register(formValues.name, formValues.email, formValues.password).then((res) => {
+  function onRegister({ values }) {
+    console.log(values)
+    mainApi.register(values.name, values.email, values.password).then((res) => {
       if (res.message) {
         console.log(res.message)
       } else {
@@ -54,8 +55,8 @@ function App() {
     });
   }
 
-  function onLogin({ formValues }) {
-    mainApi.login(formValues.email, formValues.password).then((res) => {
+  function onLogin({ values }) {
+    mainApi.login(values.email, values.password).then((res) => {
       if (res.message) {
         console.log(res.message)
       } else {
