@@ -1,6 +1,18 @@
+import React from 'react';
+import { CurrentUserContext } from '../../contexts/CurrentUserContext.js';
 import './MoviesCard.css';
 
-function MoviesCard({ movie }) {
+function MoviesCard({ movie, onMovieLike }) {
+  function handleLikeClick() {
+    onMovieLike(movie);
+  }
+
+  const currentUser = React.useContext(CurrentUserContext);
+
+  const movieLikeButtonClassName = `card__save-button ${
+    movie.owner === currentUser._id ? 'card__save-button_type_active' : 'card__save-button_type_inactive'
+  }`;
+
   return (
     <li className='card'>
       <div className='card__wrapper'>
@@ -8,9 +20,13 @@ function MoviesCard({ movie }) {
         <p className='card__text'>{movie.duration} минут</p>
       </div>   
       <a className='card__link' href={movie.trailerLink} target='_blank' rel="noreferrer">
-        <img className='card__image' alt='Постер' src={'https://api.nomoreparties.co' + movie.image.url}/>
+        <img className='card__image' alt='Постер' src={(movie.image.url) ? 'https://api.nomoreparties.co' + movie.image.url : movie.image}/>
       </a>
-      <button type='button' className='card__save-button card__save-button_type_inactive'></button>
+      <button
+        type='button'
+        className={movieLikeButtonClassName}
+        onClick={handleLikeClick}
+      ></button>
     </li>
   );
 }

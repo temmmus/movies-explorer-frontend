@@ -11,12 +11,12 @@ import NavModal from '../NavModal/NavModal';
 import NotFound from '../NotFound/NotFound';
 import {useNavigate , Routes, Route } from 'react-router-dom';
 import * as mainApi from '../../utils/MainApi.js';
+import { CurrentUserContext } from '../../contexts/CurrentUserContext.js';
 
 function App() {
   const navigate = useNavigate();
   const [loggedIn, setLoggedIn] = useState(false);
   const [currentUser, setCurrentUser] = useState({});
-  const [savedMovies, setSavedMovies] = useState([]);
 
   useEffect(() => {
     const token = localStorage.getItem('token');
@@ -40,40 +40,8 @@ function App() {
         .catch((err) => {
           console.log(err);
         });
-
-      mainApi
-        .getSavedMovies()
-        .then((res) => {
-          setSavedMovies(res);
-        })
-        .catch((err) => {
-          console.log(err);
-        });
       }
   }, []);
-
-
-  // useEffect(() => {
-  //   api
-  //     .getUserInfo()
-  //     .then((res) => {
-  //       setCurrentUser(res);
-  //     })
-  //     .catch((err) => {
-  //       console.log(err);
-  //     });
-  // }, []);
-
-  // useEffect(() => {
-  //   api
-  //     .getMovies()
-  //     .then((res) => {
-  //       setMovies(res);
-  //     })
-  //     .catch((err) => {
-  //       console.log(err);
-  //     });
-  // }, []);
 
   function onRegister({ formValues }) {
     mainApi.register(formValues.name, formValues.email, formValues.password).then((res) => {
@@ -128,20 +96,22 @@ function App() {
   }
 
   return (
-    <div className="app">
-      <Routes>
-        <Route path='/' element={<Main/>} />
-        <Route path='/signup' element={<Register onRegister={onRegister}/>} />
-        <Route path='/signin' element={<Login onLogin={onLogin}/>} />
-        <Route element={<ProtectedRoute loggedIn={loggedIn} />}>
-          <Route path="/profile" element={<Profile user= {currentUser} onLogOut={onLogOut} onUpdateUser={handleUpdateUser} />} />
-          <Route path="/movies" element={<Movies />} />
-          <Route path="/saved-movies" element={<SavedMovies movies={ savedMovies } />} />
-        </Route> 
-        <Route path='*' element={<NotFound/>} />
-      </Routes>
-      <NavModal />
-    </div>
+    <CurrentUserContext.Provider value={currentUser}>
+      <div className="app">
+        <Routes>
+          <Route path='/' element={<Main/>} />
+          <Route path='/signup' element={<Register onRegister={onRegister}/>} />
+          <Route path='/signin' element={<Login onLogin={onLogin}/>} />
+          <Route element={<ProtectedRoute loggedIn={loggedIn} />}>
+            <Route path="/profile" element={<Profile user= {currentUser} onLogOut={onLogOut} onUpdateUser={handleUpdateUser} />} />
+            <Route path="/movies" element={<Movies />} />
+            <Route path="/saved-movies" element={<SavedMovies />} />
+          </Route> 
+          <Route path='*' element={<NotFound/>} />
+        </Routes>
+        <NavModal />
+      </div>
+    </CurrentUserContext.Provider>
   );
 }
 

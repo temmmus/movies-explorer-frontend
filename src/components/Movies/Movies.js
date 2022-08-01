@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
+import { CurrentUserContext } from '../../contexts/CurrentUserContext.js';
 import * as moviesApi from '../../utils/MoviesApi.js';
+import * as mainApi from '../../utils/MainApi.js';
 import './Movies.css';
 import Header from '../Header/Header';
 import SearchForm from '../SearchForm/SearchForm';
@@ -8,6 +10,8 @@ import UploadButton from '../UploadButton/UploadButton';
 import Footer from '../Footer/Footer';
 
 function Movies() {
+  const currentUser = React.useContext(CurrentUserContext);
+
   const [beatfilmMovies, setMovies] = useState([]);
   const [filteredMovies, setFilteredMovies] = useState([]);
 
@@ -22,15 +26,26 @@ function Movies() {
         });
   }, []);
 
-  function filterMovies(searchValue) {
+  function filterMovies(searchValue, searchFilter) {
     var result = [];
+  
+    if (searchFilter) {
+      result = beatfilmMovies.filter(movie => movie.duration < 40 && movie.nameRU.toUpperCase().includes(searchValue.toUpperCase()))
+    } else {
+      result = beatfilmMovies.filter(movie => movie.nameRU.toUpperCase().includes(searchValue.toUpperCase()));
+    }
 
-    beatfilmMovies.filter((movie) => {
-      if (movie.nameRU.includes(searchValue)) {
-        result.push(movie);
-      }
-      setFilteredMovies(result)
-    })
+    setFilteredMovies(result);
+  }
+
+  function movieLike(movie) {
+      mainApi.createMovie(movie)
+          .then((savedMovie) => {
+            // setSavedMovies((state) => state.map((c) => (c._id === movie._id ? updatedCard : c)))
+          })
+          .catch((err) => {
+            console.log(err);
+          });
   }
 
   return (
@@ -38,7 +53,8 @@ function Movies() {
       <Header loggedIn={true}/>
       <main className="movies">
         <SearchForm filterMovies={filterMovies} />
-        <MoviesCardList movies={filteredMovies}/>
+        <MoviesCardList movies={filteredMovies} movieLike={movieLike}/>
+        <p>Ничего не найдено</p>
         <UploadButton/>
       </main>
       <Footer/>
