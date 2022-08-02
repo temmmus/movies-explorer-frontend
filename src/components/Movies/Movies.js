@@ -36,7 +36,8 @@ function Movies() {
       result = beatfilmMovies.filter(movie => movie.nameRU.toUpperCase().includes(searchValue.toUpperCase()));
     }
     
-    setTimeout(() => setFilteredMovies(result), 2000);
+    setFilteredMovies(result);
+    // setTimeout(() => setFilteredMovies(result), 2000);
     setLoading(false);
   }
 
