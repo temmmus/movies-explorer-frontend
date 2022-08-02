@@ -3,3 +3,11 @@
     flex-direction: column;
     justify-content: center;
 }
+
+.saved-movies__result-message {
+    margin: 0 auto;
+    margin-bottom: 100px;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 16px;
+}

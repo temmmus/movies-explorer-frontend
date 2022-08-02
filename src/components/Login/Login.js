@@ -29,9 +29,11 @@ function Login({ onLogin }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    onLogin({ values })
     resetForm();
-    onLogin({ values });
   };
+
+
 
   return (
     <div className='login'>
@@ -58,6 +60,7 @@ function Login({ onLogin }) {
             />
         <p className='login__error-message'>{errors.password}</p>
 
+        {/* <p className='login__error-message'>{showError}</p> */}
         <button
               type='submit'
               className={`login__button ${isValid ? null : 'login__button_disabled'}`}

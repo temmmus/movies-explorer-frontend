@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { CurrentUserContext } from '../../contexts/CurrentUserContext.js';
 import * as mainApi from '../../utils/MainApi.js';
 import './SavedMovies.css';
 import Header from '../Header/Header';
@@ -7,8 +6,7 @@ import SearchForm from '../SearchForm/SearchForm';
 import MoviesCardList from '../MoviesCardList/MoviesCardList';
 import Footer from '../Footer/Footer';
 
-function SavedMovies({ movies }) {
-  const currentUser = React.useContext(CurrentUserContext);
+function SavedMovies() {
 
   const [savedMovies, setSavedMovies] = useState([]);
 
@@ -39,7 +37,7 @@ function SavedMovies({ movies }) {
       <main className="saved-movies">
         <SearchForm/>
         <MoviesCardList movies={savedMovies} movieLike={movieLike}/>
-        <p>Здесь пока ничего нет</p>
+          {(savedMovies.length === 0) ? <p className="saved-movies__result-message">Здесь пока ничего нет</p> : null}
       </main>
       <Footer/>
     </div>

@@ -15,12 +15,11 @@
 
 .navmodal_opened {
     visibility: visible;
-    opacity: 1;
+    opacity: 0.9;
     padding-top: 20px;
     padding-right: 20px;
     display: flex;
     flex-direction: column;
-    /* justify-content: center; */
     align-items: center;
 }
 
@@ -50,10 +49,6 @@
     align-items: center;
     gap: 28px;
 }
-
-/* .navmodal__wrapper {
-    justify-self: flex-end;
-} */
 
 .navmodal__link {
     padding-bottom: 4px;

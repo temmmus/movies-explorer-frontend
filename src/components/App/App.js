@@ -20,38 +20,58 @@ function App() {
 
   useEffect(() => {
     const token = localStorage.getItem('token');
-
     if (token) {
-      mainApi
-        .checkToken(token)
-        .then((res) => {
-          setLoggedIn(true);
-          navigate('/movies');
-        })
-        .catch(() => {
-          localStorage.removeItem('token');
-        });
+      checkCurrentUser();
+      checkToken(token);
+    }
 
-      mainApi
-        .getUserInfo()
-        .then((res) => {
-          setCurrentUser(res);
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-      }
+  // window.onload = () => {
+  //   const burgerButton = document.querySelector(".header__burger-menu");
+  //   const closeButton = document.querySelector(".navmodal__close-button");
+  //   const navModal = document.querySelector(".navmodal");
+    
+  //   burgerButton.addEventListener("click", () => {
+  //       navModal.classList.add('navmodal_opened')
+  //     });
+
+  //   closeButton.addEventListener("click", () => {
+  //       navModal.classList.remove('navmodal_opened')
+  //     });
+  // }
   }, []);
 
+  function checkToken(token) {
+    mainApi
+      .checkToken(token)
+      .then(() => {
+        setLoggedIn(true);
+      })
+      .catch(() => {
+        localStorage.removeItem('token');
+      });
+  }
+
+  function checkCurrentUser() {
+    mainApi
+      .getUserInfo()
+      .then((res) => {
+        setCurrentUser(res);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
+
   function onRegister({ values }) {
-    console.log(values)
     mainApi.register(values.name, values.email, values.password).then((res) => {
       if (res.message) {
         console.log(res.message)
       } else {
         localStorage.setItem('token', `Bearer ${res.token}`);
+        setLoggedIn(true);
+        checkCurrentUser();
         navigate('/movies');
-      } 
+      }
     });
   }
 
@@ -61,8 +81,10 @@ function App() {
         console.log(res.message)
       } else {
         localStorage.setItem('token', `Bearer ${res.token}`);
+        setLoggedIn(true);
+        checkCurrentUser();
         navigate('/movies');
-      } 
+      }
     });
   }
 
@@ -82,20 +104,6 @@ function App() {
       });
   }
 
-  window.onload = () => {
-    var burgerButton = document.querySelector(".header__burger-menu");
-    var closeButton = document.querySelector(".navmodal__close-button");
-    var navModal = document.querySelector(".navmodal");
-    
-    burgerButton.addEventListener("click", () => {
-        navModal.classList.add('navmodal_opened')
-      });
-
-    closeButton.addEventListener("click", () => {
-        navModal.classList.remove('navmodal_opened')
-      });
-  }
-
   return (
     <CurrentUserContext.Provider value={currentUser}>
       <div className="app">
@@ -104,7 +112,7 @@ function App() {
           <Route path='/signup' element={<Register onRegister={onRegister}/>} />
           <Route path='/signin' element={<Login onLogin={onLogin}/>} />
           <Route element={<ProtectedRoute loggedIn={loggedIn} />}>
-            <Route path="/profile" element={<Profile user= {currentUser} onLogOut={onLogOut} onUpdateUser={handleUpdateUser} />} />
+            <Route path="/profile" element={<Profile user={currentUser} onLogOut={onLogOut} onUpdateUser={handleUpdateUser} />} />
             <Route path="/movies" element={<Movies />} />
             <Route path="/saved-movies" element={<SavedMovies />} />
           </Route> 
