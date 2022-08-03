@@ -3,10 +3,14 @@ import Logo from '../Logo/Logo';
 import AccountButton from '../AccountButton/AccountButton';
 import { Link } from 'react-router-dom';
 
-function Header({theme, loggedIn}) {
+function Header({ loggedIn }) {
+  function onClick() {
+    const navModal = document.querySelector(".navmodal");
+    navModal.classList.add('navmodal_opened');
+  }
+
   if (loggedIn) {
     return (
-      // <header className={`header ${theme === 'dark' ? 'header_theme_dark' : null}`}>
       <header className='header header_theme_white'>
         <Logo />
         <nav className="header__links header__links_logedin">
@@ -16,12 +20,11 @@ function Header({theme, loggedIn}) {
           </div>
           <AccountButton />
         </nav>
-        <button type='button' className='header__burger-menu'></button>
+        <button type='button' className='header__burger-menu' onClick={onClick}></button>
       </header>
     )
   } else {
     return (
-      // <header className={`header ${theme === 'dark' ? 'header_theme_dark' : null}`}>
       <header className='header header_theme_dark'>
         <Logo />
         <nav className="header__links">

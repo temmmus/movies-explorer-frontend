@@ -1,20 +1,73 @@
+import React, { useState, useCallback } from 'react';
 import './Login.css';
 import Logo from '../Logo/Logo';
 import { Link } from 'react-router-dom';
 
-function Login() {
+function Login({ onLogin }) {
+
+  const [values, setValues] = useState({});
+  const [errors, setErrors] = useState({});
+  const [isValid, setIsValid] = useState(false);
+
+  const handleChange = (event) => {
+    const target = event.target;
+    const name = target.name;
+    const value = target.value;
+    setValues({...values, [name]: value});
+    setErrors({...errors, [name]: target.validationMessage });
+    setIsValid(target.closest("form").checkValidity());
+  };
+
+  const resetForm = useCallback(
+    (newValues = {}, newErrors = {}, newIsValid = false) => {
+      setValues(newValues);
+      setErrors(newErrors);
+      setIsValid(newIsValid);
+    },
+    [setValues, setErrors, setIsValid]
+  );
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    onLogin({ values })
+    resetForm();
+  };
+
+
+
   return (
     <div className='login'>
       <Logo />
       <h2 className='login__title'>Рады видеть!</h2>
-      <form className='login__form'>
+      <form className='login__form' onSubmit={handleSubmit}>
+        <label htmlFor="email" className='login__input-label'>Email</label>
+        <input 
+              type='email'
+              name='email'
+              className='login__input'
+              onChange={handleChange}
+              required
+            />
+        <p className='login__error-message'>{errors.email}</p>
+
         <label htmlFor="password" className='login__input-label'>Пароль</label>
-          <input type='password' name='password' className='login__input' required/>
+        <input
+              type='password'
+              name='password'
+              className='login__input'
+              onChange={handleChange}
+              required
+            />
+        <p className='login__error-message'>{errors.password}</p>
 
-          <label htmlFor="password" className='login__input-label'>Пароль</label>
-          <input type='password' name='password' className='login__input' required/>
-
-          <button type='submit' className='login__button'>Войти</button>
+        {/* <p className='login__error-message'>{showError}</p> */}
+        <button
+              type='submit'
+              className={`login__button ${isValid ? null : 'login__button_disabled'}`}
+              disabled={!isValid}
+              >
+          Войти
+        </button>
       </form>
       <div className='login__wrapper'>
         <p className='login__text'>Ещё не зарегистрированы?</p>

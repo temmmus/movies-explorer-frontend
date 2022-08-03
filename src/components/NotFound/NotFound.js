@@ -1,7 +1,7 @@
-import './ErrorPage.css';
+import './NotFound.css';
 import { Link } from 'react-router-dom';
 
-function ErrorPage() {
+function NotFound() {
     return (
         <div className='error'>
             <h2 className='error__title'>404</h2>
@@ -11,4 +11,4 @@ function ErrorPage() {
     );
   }
   
-  export default ErrorPage;
+  export default NotFound;
