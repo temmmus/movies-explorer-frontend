@@ -44,7 +44,7 @@ function Movies() {
   function movieLike(movie) {
       mainApi.createMovie(movie)
           .then((savedMovie) => {
-            // setSavedMovies((state) => state.map((c) => (c._id === movie._id ? updatedCard : c)))
+            setFilteredMovies((state) => state.map((c) => (c.id === movie._id ? savedMovie : c)))
           })
           .catch((err) => {
             console.log(err);

@@ -24,7 +24,6 @@ function SavedMovies() {
   function movieLike(movie) {
       mainApi.deleteMovie(movie)
         .then((deletedMovie) => {
-          console.log(deletedMovie)
           setSavedMovies((state) => state.filter((c) => c._id !== deletedMovie))          
         })
         .catch((err) => {

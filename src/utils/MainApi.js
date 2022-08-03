@@ -1,4 +1,4 @@
-const BASE_URL = 'http://localhost:4000';
+const BASE_URL = 'http://localhost:4000/api';
 
 export const register = (name, email, password) => {
   return fetch(`${BASE_URL}/signup`, {
