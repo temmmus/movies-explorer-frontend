@@ -1,4 +1,5 @@
-const BASE_URL = 'http://localhost:4000/api';
+// const BASE_URL = 'http://localhost:4000/api';
+const BASE_URL = 'https://temmmus-diploma.nomoreparties.sbs/api';
 
 export const register = (name, email, password) => {
   return fetch(`${BASE_URL}/signup`, {
