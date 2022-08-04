@@ -63,9 +63,9 @@ function App() {
   }
 
   function onRegister({ values }) {
-    mainApi.register(values.name, values.email, values.password).then((res) => {
+    return mainApi.register(values.name, values.email, values.password).then((res) => {
       if (res.message) {
-        console.log(res.message)
+        return res.message;
       } else {
         localStorage.setItem('token', `Bearer ${res.token}`);
         setLoggedIn(true);
@@ -76,9 +76,9 @@ function App() {
   }
 
   function onLogin({ values }) {
-    mainApi.login(values.email, values.password).then((res) => {
+    return mainApi.login(values.email, values.password).then((res) => {
       if (res.message) {
-        console.log(res.message)
+        return res.message;
       } else {
         localStorage.setItem('token', `Bearer ${res.token}`);
         setLoggedIn(true);
@@ -109,7 +109,7 @@ function App() {
       <div className="app">
         <Routes>
           <Route path='/' element={<Main/>} />
-          <Route path='/signup' element={<Register onRegister={onRegister}/>} />
+          <Route path='/signup' element={<Register onRegister={onRegister} />} />
           <Route path='/signin' element={<Login onLogin={onLogin}/>} />
           <Route element={<ProtectedRoute loggedIn={loggedIn} />}>
             <Route path="/profile" element={<Profile user={currentUser} onLogOut={onLogOut} onUpdateUser={handleUpdateUser} />} />

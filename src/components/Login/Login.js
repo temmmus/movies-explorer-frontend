@@ -18,29 +18,30 @@ function Login({ onLogin }) {
     setIsValid(target.closest("form").checkValidity());
   };
 
-  const resetForm = useCallback(
-    (newValues = {}, newErrors = {}, newIsValid = false) => {
-      setValues(newValues);
-      setErrors(newErrors);
-      setIsValid(newIsValid);
-    },
-    [setValues, setErrors, setIsValid]
-  );
+  // const resetForm = useCallback(
+  //   (newValues = {}, newErrors = {}, newIsValid = false) => {
+  //     setValues(newValues);
+  //     setErrors(newErrors);
+  //     setIsValid(newIsValid);
+  //   },
+  //   [setValues, setErrors, setIsValid]
+  // );
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    onLogin({ values })
-    resetForm();
+    onLogin({ values }).then(err => setErrors({...errors, login: err}));
+    e.target.reset()
+    // resetForm();
   };
-
 
 
   return (
     <div className='login'>
       <Logo />
       <h2 className='login__title'>Рады видеть!</h2>
-      <form className='login__form' onSubmit={handleSubmit}>
-        <label htmlFor="email" className='login__input-label'>Email</label>
+
+      <form className='login__form' name='login' onSubmit={handleSubmit}>
+        <label htmlFor='email' className='login__input-label'>Email</label>
         <input 
               type='email'
               name='email'
@@ -50,7 +51,7 @@ function Login({ onLogin }) {
             />
         <p className='login__error-message'>{errors.email}</p>
 
-        <label htmlFor="password" className='login__input-label'>Пароль</label>
+        <label htmlFor='password' className='login__input-label'>Пароль</label>
         <input
               type='password'
               name='password'
@@ -60,7 +61,8 @@ function Login({ onLogin }) {
             />
         <p className='login__error-message'>{errors.password}</p>
 
-        {/* <p className='login__error-message'>{showError}</p> */}
+        <p className='login__error-message login__error-message_type_login'>{errors.login}</p>
+
         <button
               type='submit'
               className={`login__button ${isValid ? null : 'login__button_disabled'}`}
@@ -68,6 +70,7 @@ function Login({ onLogin }) {
               >
           Войти
         </button>
+
       </form>
       <div className='login__wrapper'>
         <p className='login__text'>Ещё не зарегистрированы?</p>

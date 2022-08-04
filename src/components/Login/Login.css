@@ -58,8 +58,15 @@
     color: #FF3055;
 }
 
+.login__error-message_type_login {
+    padding-top: 100px;
+    font-size: 12px;
+    line-height: 0px;
+    text-align: center;
+}
+
 .login__button {
-    margin-top: 160px;
+    margin-top: 60px;
     margin-bottom: 16px;
     height: 45px;
     text-align: center;
