@@ -16,7 +16,7 @@ function Header({ loggedIn }) {
         <nav className="header__links header__links_logedin">
           <div className='header__wrapper'>
             <Link className={`header__link header__link_color_black ${window.location.pathname === '/movies' ? 'header__link_active' : null}`} to='/movies'>Фильмы</Link>
-            <Link className={`header__link header__link_color_black ${window.location.pathname === '/saved-movies' ? 'header__link_active' : null}`} to='/saved-movies'>Сохраненные фильмы</Link>
+            <Link className={`header__link header__link_color_black ${window.location.pathname === '/movies-saved' ? 'header__link_active' : null}`} to='/movies-saved'>Сохраненные фильмы</Link>
           </div>
           <AccountButton />
         </nav>

@@ -1,10 +1,10 @@
-.saved-movies {
+.movies-saved {
     display: flex;
     flex-direction: column;
     justify-content: center;
 }
 
-.saved-movies__result-message {
+.movies-saved__result-message {
     margin: 0 auto;
     margin-bottom: 100px;
     font-weight: 400;

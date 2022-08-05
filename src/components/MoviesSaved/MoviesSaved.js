@@ -1,20 +1,20 @@
 import React, { useState, useEffect } from 'react';
 import * as mainApi from '../../utils/MainApi.js';
-import './SavedMovies.css';
+import './MoviesSaved.css';
 import Header from '../Header/Header';
 import SearchForm from '../SearchForm/SearchForm';
 import MoviesCardList from '../MoviesCardList/MoviesCardList';
 import Footer from '../Footer/Footer';
 
-function SavedMovies() {
+function MoviesSaved() {
 
-  const [savedMovies, setSavedMovies] = useState([]);
+  const [savedMovies, setMoviesSaved] = useState([]);
 
   useEffect(() => {
     mainApi
-      .getSavedMovies()
+      .getMoviesSaved()
       .then((res) => {
-        setSavedMovies(res);
+        setMoviesSaved(res);
       })
       .catch((err) => {
         console.log(err);
@@ -24,7 +24,7 @@ function SavedMovies() {
   function movieLike(movie) {
       mainApi.deleteMovie(movie)
         .then((deletedMovie) => {
-          setSavedMovies((state) => state.filter((c) => c._id !== deletedMovie))          
+          setMoviesSaved((state) => state.filter((c) => c._id !== deletedMovie))          
         })
         .catch((err) => {
           console.log(err);
@@ -34,14 +34,14 @@ function SavedMovies() {
   return (
     <div className="page">
       <Header loggedIn={true}/>
-      <main className="saved-movies">
+      <main className="movies-saved">
         <SearchForm/>
         <MoviesCardList movies={savedMovies} movieLike={movieLike}/>
-          {(savedMovies.length === 0) ? <p className="saved-movies__result-message">Здесь пока ничего нет</p> : null}
+          {(savedMovies.length === 0) ? <p className="movies-saved__result-message">Здесь пока ничего нет</p> : null}
       </main>
       <Footer/>
     </div>
   );
 }
 
-export default SavedMovies;
+export default MoviesSaved;

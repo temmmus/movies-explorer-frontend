@@ -6,7 +6,7 @@ import Login from '../Login/Login';
 import Register from '../Register/Register';
 import Profile from '../Profile/Profile';
 import Movies from '../Movies/Movies';
-import SavedMovies from '../SavedMovies/SavedMovies';
+import MoviesSaved from '../MoviesSaved/MoviesSaved';
 import NavModal from '../NavModal/NavModal';
 import NotFound from '../NotFound/NotFound';
 import {useNavigate , Routes, Route } from 'react-router-dom';
@@ -58,7 +58,10 @@ function App() {
         checkCurrentUser();
         navigate('/movies');
       }
-    });
+    })
+    .catch((err) => {
+      console.log(err);
+    });;
   }
 
   function handleLogin({ values }) {
@@ -71,7 +74,10 @@ function App() {
         checkCurrentUser();
         navigate('/movies');
       }
-    });
+    })
+    .catch((err) => {
+      console.log(err);
+    });;
   }
 
   function handleLogOut() {
@@ -113,10 +119,10 @@ function App() {
               </ProtectedRoute>
             }
           />
-          <Route path='/saved-movies'
+          <Route path='/movies-saved'
             element={
               <ProtectedRoute loggedIn={loggedIn}> 
-                <SavedMovies />
+                <MoviesSaved />
               </ProtectedRoute>
             }
           />

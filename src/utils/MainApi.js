@@ -10,8 +10,8 @@ export const register = (name, email, password) => {
     },
     body: JSON.stringify({name, email, password }),
   })
-    .then((response) => {
-      return response.json();
+    .then((res) => {
+      return res.json();
     })
     .then((res) => {
       return res;
@@ -45,7 +45,8 @@ export const checkToken = (token) => {
     },
   })
     .then((res) => res.json())
-    .then((data) => data);
+    .then((data) => data)
+    .catch((err) => console.log(err));
 };
 
 export const getUserInfo = () => {
@@ -56,8 +57,8 @@ export const getUserInfo = () => {
       'Authorization': localStorage.getItem('token')
     }
   })
-    .then((response) => {
-      return response.json();
+    .then((res) => {
+      return res.json();
     })
     .then((res) => {
       return res;
@@ -74,8 +75,8 @@ export const patchUserInfo = (name, email) => {
     },
     body: JSON.stringify({ name: name, email: email }),
   })
-  .then((response) => {
-    return response.json();
+  .then((res) => {
+    return res.json();
   })
   .then((res) => {
     return res;
@@ -83,7 +84,7 @@ export const patchUserInfo = (name, email) => {
   .catch((err) => console.log(err));
 };
 
-export const getSavedMovies = () => {
+export const getMoviesSaved = () => {
   return fetch(`${BASE_URL}/movies`, {
     method: 'GET',
     headers: {
@@ -91,8 +92,8 @@ export const getSavedMovies = () => {
       'Authorization': localStorage.getItem('token')
     }
   })
-    .then((response) => {
-      return response.json();
+    .then((res) => {
+      return res.json();
     })
     .then((res) => {
       return res;
@@ -122,8 +123,8 @@ export const createMovie = (movie) => {
       owner: movie.owner,
      }),
   })
-    .then((response) => {
-      return response.json();
+    .then((res) => {
+      return res.json();
     })
     .then((res) => {
       return res;
@@ -139,8 +140,8 @@ export const deleteMovie = (movie) => {
       'Authorization': localStorage.getItem('token')
     }
   })
-    .then((response) => {
-      return response.json();
+    .then((res) => {
+      return res.json();
     })
     .then((res) => {
       return res;
