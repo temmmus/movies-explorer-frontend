@@ -1,7 +1,8 @@
-import React, { useState, useCallback } from 'react';
+import React, { useState } from 'react';
 import './Register.css';
 import Logo from '../Logo/Logo';
 import { Link } from 'react-router-dom';
+import { validateEmail } from '../../utils/ValidateEmail';
 
 function Register({ onRegister }) {
 
@@ -13,25 +14,20 @@ function Register({ onRegister }) {
     const target = event.target;
     const name = target.name;
     const value = target.value;
+    
     setValues({...values, [name]: value});
     setErrors({...errors, [name]: target.validationMessage });
     setIsValid(target.closest("form").checkValidity());
-  };
 
-  // const resetForm = useCallback(
-  //   (newValues = {}, newErrors = {}, newIsValid = false) => {
-  //     setValues(newValues);
-  //     setErrors(newErrors);
-  //     setIsValid(newIsValid);
-  //   },
-  //   [setValues, setErrors, setIsValid]
-  // );
+    if (!validateEmail(values.email)) {
+      setErrors({...errors, email: 'Указан невалидный email'});
+    } 
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
     onRegister({ values }).then(err => setErrors({...errors, register: err}));
     e.target.reset()
-    // resetForm();
   };
 
 
@@ -47,6 +43,8 @@ function Register({ onRegister }) {
               name='name'
               className='register__input'
               onChange={handleChange}
+              minLength='2'
+              maxLength='30'
               required
            />
         <p className='register__error-message'>{errors.name}</p>

@@ -62,7 +62,7 @@ function App() {
       });
   }
 
-  function onRegister({ values }) {
+  function handleRegister({ values }) {
     return mainApi.register(values.name, values.email, values.password).then((res) => {
       if (res.message) {
         return res.message;
@@ -75,7 +75,7 @@ function App() {
     });
   }
 
-  function onLogin({ values }) {
+  function handleLogin({ values }) {
     return mainApi.login(values.email, values.password).then((res) => {
       if (res.message) {
         return res.message;
@@ -88,16 +88,17 @@ function App() {
     });
   }
 
-  function onLogOut() {
+  function handleLogOut() {
     setLoggedIn(false);
     localStorage.removeItem('token');
   }
 
-  function handleUpdateUser(name, about) {
-    mainApi
-      .patchUserInfo(name, about)
+  function handleUpdateUser({ values }) {
+    return mainApi
+      .patchUserInfo(values.name, values.email)
       .then((res) => {
         setCurrentUser(res);
+        return res;
       })
       .catch((err) => {
         console.log(err);
@@ -109,14 +110,14 @@ function App() {
       <div className="app">
         <Routes>
           <Route path='/' element={<Main/>} />
-          <Route path='/signup' element={<Register onRegister={onRegister} />} />
-          <Route path='/signin' element={<Login onLogin={onLogin}/>} />
+          <Route path='/signup' element={<Register onRegister={handleRegister} />} />
+          <Route path='/signin' element={<Login onLogin={handleLogin}/>} />
           <Route element={<ProtectedRoute loggedIn={loggedIn} />}>
-            <Route path="/profile" element={<Profile user={currentUser} onLogOut={onLogOut} onUpdateUser={handleUpdateUser} />} />
+            <Route path="/profile" element={<Profile user={currentUser} onLogOut={handleLogOut} onUpdateUser={handleUpdateUser} />} />
             <Route path="/movies" element={<Movies />} />
             <Route path="/saved-movies" element={<SavedMovies />} />
           </Route> 
-          <Route path='*' element={<NotFound/>} />
+          <Route path='*' element={<NotFound />} />
         </Routes>
         <NavModal />
       </div>

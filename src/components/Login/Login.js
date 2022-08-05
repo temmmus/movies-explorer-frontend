@@ -1,7 +1,8 @@
-import React, { useState, useCallback } from 'react';
+import React, { useState } from 'react';
 import './Login.css';
 import Logo from '../Logo/Logo';
 import { Link } from 'react-router-dom';
+import { validateEmail } from '../../utils/ValidateEmail';
 
 function Login({ onLogin }) {
 
@@ -13,25 +14,20 @@ function Login({ onLogin }) {
     const target = event.target;
     const name = target.name;
     const value = target.value;
+
     setValues({...values, [name]: value});
     setErrors({...errors, [name]: target.validationMessage });
     setIsValid(target.closest("form").checkValidity());
-  };
 
-  // const resetForm = useCallback(
-  //   (newValues = {}, newErrors = {}, newIsValid = false) => {
-  //     setValues(newValues);
-  //     setErrors(newErrors);
-  //     setIsValid(newIsValid);
-  //   },
-  //   [setValues, setErrors, setIsValid]
-  // );
+    if (!validateEmail(values.email)) {
+      setErrors({...errors, email: 'Указан невалидный email'});
+    }
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
     onLogin({ values }).then(err => setErrors({...errors, login: err}));
     e.target.reset()
-    // resetForm();
   };
 
 
