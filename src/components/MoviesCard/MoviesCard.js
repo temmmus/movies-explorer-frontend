@@ -13,11 +13,19 @@ function MoviesCard({ movie, onMovieLike }) {
     movie.owner === currentUser._id ? 'card__save-button_type_active' : 'card__save-button_type_inactive'
   }`;
 
+  const duration = (duration) => {
+    if (duration < 60) {
+      return duration + ' минут';
+    } else {
+      return Math.floor(duration/60) + 'ч' + ' ' + duration%60 + 'м'
+    }
+  };
+
   return (
     <li className='card'>
       <div className='card__wrapper'>
         <h3 className='card__title'>{movie.nameRU}</h3>
-        <p className='card__text'>{movie.duration} минут</p>
+        <p className='card__text'>{duration(movie.duration)}</p>
       </div>   
       <a className='card__link' href={movie.trailerLink} target='_blank' rel="noreferrer">
         <img className='card__image' alt='Постер' src={(movie.image.url) ? 'https://api.nomoreparties.co' + movie.image.url : movie.image}/>

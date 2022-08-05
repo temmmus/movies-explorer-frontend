@@ -39,8 +39,8 @@ function Profile({ user, onLogOut, onUpdateUser }) {
       }
     });
   };
-  console.log(values)
 
+  
   return (
     <div className="page">
       <Header loggedIn={true}/>

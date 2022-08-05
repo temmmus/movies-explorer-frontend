@@ -24,20 +24,6 @@ function App() {
       checkCurrentUser();
       checkToken(token);
     }
-
-  // window.onload = () => {
-  //   const burgerButton = document.querySelector(".header__burger-menu");
-  //   const closeButton = document.querySelector(".navmodal__close-button");
-  //   const navModal = document.querySelector(".navmodal");
-    
-  //   burgerButton.addEventListener("click", () => {
-  //       navModal.classList.add('navmodal_opened')
-  //     });
-
-  //   closeButton.addEventListener("click", () => {
-  //       navModal.classList.remove('navmodal_opened')
-  //     });
-  // }
   }, []);
 
   function checkToken(token) {
@@ -109,14 +95,32 @@ function App() {
     <CurrentUserContext.Provider value={currentUser}>
       <div className="app">
         <Routes>
-          <Route path='/' element={<Main/>} />
+          <Route path='/' element={<Main loggedIn={loggedIn}/>} />
           <Route path='/signup' element={<Register onRegister={handleRegister} />} />
           <Route path='/signin' element={<Login onLogin={handleLogin}/>} />
-          <Route element={<ProtectedRoute loggedIn={loggedIn} />}>
-            <Route path="/profile" element={<Profile user={currentUser} onLogOut={handleLogOut} onUpdateUser={handleUpdateUser} />} />
-            <Route path="/movies" element={<Movies />} />
-            <Route path="/saved-movies" element={<SavedMovies />} />
-          </Route> 
+
+          <Route path='/profile'
+            element={
+              <ProtectedRoute loggedIn={loggedIn}> 
+                <Profile user={currentUser} onLogOut={handleLogOut} onUpdateUser={handleUpdateUser} />
+              </ProtectedRoute>
+            }
+          />
+          <Route path='/movies'
+            element={
+              <ProtectedRoute loggedIn={loggedIn}> 
+                <Movies />
+              </ProtectedRoute>
+            }
+          />
+          <Route path='/saved-movies'
+            element={
+              <ProtectedRoute loggedIn={loggedIn}> 
+                <SavedMovies />
+              </ProtectedRoute>
+            }
+          />
+
           <Route path='*' element={<NotFound />} />
         </Routes>
         <NavModal />
