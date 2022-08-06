@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState } from 'react';
 import * as mainApi from '../../utils/MainApi.js';
 import './Movies.css';
 import Header from '../Header/Header';
@@ -8,44 +8,37 @@ import Loader from '../Loader/Loader';
 import Footer from '../Footer/Footer';
 
 function Movies({ movies }) {
-  // const [movies, setMovies] = useState([]);
-  const [searchResult, setSearchResult] = useState([]);
+  const [searchResult, setSearchResult] = useState(JSON.parse(localStorage.getItem('searchResult')) || []);
   const [loading, setLoading] = useState(false)
-  // const [searchParams, setSearchParams] = useState({});
 
-  // useEffect(() => {
-  //   setSearchParams({
-  //     text: localStorage.getItem('searchValue'),
-  //     filter: localStorage.getItem('toggle')
-  //   });
-  // }, []);
+  localStorage.setItem('searchResult',  JSON.stringify(searchResult))
 
   function findMovies(params) 
   {
-    console.log(params.searchFilter)
-
     setLoading(true);
 
-    if (params.searchFilter) {
-      setSearchResult(movies.filter(movie => movie.duration < 40 && movie.nameRU.toUpperCase().includes(params.searchText.toUpperCase())));
-    } else {
-      setSearchResult(movies.filter(movie => movie.nameRU.toUpperCase().includes(params.searchText.toUpperCase())));
-    }
+    setSearchResult([]);
     
-    // setTimeout(() => setSearchResult(searchFilter), 2000);
-    setLoading(false);
+    setTimeout(() => {
+      if (params.searchFilter) {
+        setSearchResult(movies.filter(movie => movie.duration < 40 && movie.nameRU.toUpperCase().includes(params.searchText.toUpperCase())));
+        setLoading(false)
+      } else {
+        setSearchResult(movies.filter(movie => movie.nameRU.toUpperCase().includes(params.searchText.toUpperCase())));
+        setLoading(false)
+      }
+    }, 1000);
+
   }
 
   function movieLike(movie) {
-      mainApi.createMovie(movie)
-          .then((savedMovie) => {
-            // setMoviesSaved((state) => state.filter((c) => c._id !== deletedMovie))   
-            setSearchResult((state) => state.map((c) => (c.id === movie._id ? savedMovie : c)))
-            // setSearchResult((state) => console.log(state))
-          })
-          .catch((err) => {
-            console.log(err);
-          });
+    mainApi.createMovie(movie)
+        .then((savedMovie) => {
+          setSearchResult((state) => state.map((c) => (c.id === movie._id ? savedMovie : c)))
+        })
+        .catch((err) => {
+          console.log(err);
+        });
   }
 
 

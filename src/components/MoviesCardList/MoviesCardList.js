@@ -2,19 +2,31 @@ import React, { useState } from 'react';
 import './MoviesCardList.css';
 import MoviesCard from '../MoviesCard/MoviesCard';
 
+
 function MoviesCardList({ movies, movieLike }) {
+
+  var count;
+
+  if (window.innerWidth > 780) {
+    count = 12;
+  } else if (window.innerWidth < 780 && window.innerWidth > 460 ) {
+    count = 8;
+  } else {
+    count = 5;
+  }
+
+  const [index, setIndex] = useState(count);
+  const moviesToRender = movies.slice(0, index);
 
   function handleMovieLike(movie) {
     movieLike(movie);
   }
 
-  const [index, setIndex] = useState(12);
-  const moviesToRender = movies.slice(0, index);
 
   return (
     <>
       <ul className="card-list" >
-        {moviesToRender.map((movie, index) => (  
+        {moviesToRender.map((movie) => (  
           <MoviesCard
             key={(movie.id) ? movie.id : movie._id}
             movie={movie}
@@ -22,7 +34,12 @@ function MoviesCardList({ movies, movieLike }) {
           />
         ))}
       </ul>
-      {(movies.length > 12 && index < movies.length) ? <button type='button' className='card-list__upload-button' onClick={() => setIndex(index + 12)}>Еще</button> : null }  
+
+      {
+        (movies.length > count && index < movies.length)
+        ? <button type='button' className='card-list__upload-button' onClick={() => setIndex(index + count)}>Еще</button>
+        : null 
+      }
     </>
 
   );
