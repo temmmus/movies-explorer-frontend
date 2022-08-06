@@ -3,14 +3,12 @@ import { CurrentUserContext } from '../../contexts/CurrentUserContext.js';
 import './MoviesCard.css';
 
 function MoviesCard({ movie, onMovieLike }) {
-  function handleLikeClick() {
-    onMovieLike(movie);
-  }
 
   const currentUser = React.useContext(CurrentUserContext);
 
+
   const movieLikeButtonClassName = `card__save-button ${
-    movie.owner === currentUser._id ? 'card__save-button_type_active' : 'card__save-button_type_inactive'
+    movie.owner === currentUser._id ? 'card__save-button_type_cancel' : 'card__save-button_type_inactive'
   }`;
 
   const duration = (duration) => {
@@ -20,6 +18,11 @@ function MoviesCard({ movie, onMovieLike }) {
       return Math.floor(duration/60) + 'ч' + ' ' + duration%60 + 'м'
     }
   };
+
+  
+  function handleLikeClick() {
+    onMovieLike(movie);
+  }
 
   return (
     <li className='card'>

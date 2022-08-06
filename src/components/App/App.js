@@ -10,6 +10,7 @@ import MoviesSaved from '../MoviesSaved/MoviesSaved';
 import NavModal from '../NavModal/NavModal';
 import NotFound from '../NotFound/NotFound';
 import {useNavigate , Routes, Route } from 'react-router-dom';
+import * as moviesApi from '../../utils/MoviesApi.js';
 import * as mainApi from '../../utils/MainApi.js';
 import { CurrentUserContext } from '../../contexts/CurrentUserContext.js';
 
@@ -17,12 +18,14 @@ function App() {
   const navigate = useNavigate();
   const [loggedIn, setLoggedIn] = useState(false);
   const [currentUser, setCurrentUser] = useState({});
+  const [beatfilmMovies, setBeatfilmMovies] = useState([]);
 
   useEffect(() => {
     const token = localStorage.getItem('token');
     if (token) {
       checkCurrentUser();
       checkToken(token);
+      getMovies();
     }
   }, []);
 
@@ -42,6 +45,17 @@ function App() {
       .getUserInfo()
       .then((res) => {
         setCurrentUser(res);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
+
+  function getMovies() {
+    moviesApi
+      .getMovies()
+      .then((res) => {
+        setBeatfilmMovies(res);
       })
       .catch((err) => {
         console.log(err);
@@ -115,7 +129,7 @@ function App() {
           <Route path='/movies'
             element={
               <ProtectedRoute loggedIn={loggedIn}> 
-                <Movies />
+                <Movies movies={beatfilmMovies} />
               </ProtectedRoute>
             }
           />

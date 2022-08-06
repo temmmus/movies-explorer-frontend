@@ -1,13 +1,13 @@
 .movies-saved {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
 }
 
 .movies-saved__result-message {
-    margin: 0 auto;
-    margin-bottom: 100px;
-    font-weight: 400;
-    font-size: 16px;
-    line-height: 16px;
+  margin: 0 auto;
+  margin-bottom: 100px;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 16px;
 }

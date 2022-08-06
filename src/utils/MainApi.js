@@ -10,9 +10,7 @@ export const register = (name, email, password) => {
     },
     body: JSON.stringify({name, email, password }),
   })
-    .then((res) => {
-      return res.json();
-    })
+    .then((res) => res.json())
     .then((res) => {
       return res;
     })
@@ -57,9 +55,7 @@ export const getUserInfo = () => {
       'Authorization': localStorage.getItem('token')
     }
   })
-    .then((res) => {
-      return res.json();
-    })
+    .then((res) => res.json())
     .then((res) => {
       return res;
     })
@@ -75,9 +71,7 @@ export const patchUserInfo = (name, email) => {
     },
     body: JSON.stringify({ name: name, email: email }),
   })
-  .then((res) => {
-    return res.json();
-  })
+  .then((res) => res.json())
   .then((res) => {
     return res;
   })
@@ -92,9 +86,7 @@ export const getMoviesSaved = () => {
       'Authorization': localStorage.getItem('token')
     }
   })
-    .then((res) => {
-      return res.json();
-    })
+    .then((res) => res.json())
     .then((res) => {
       return res;
     })
@@ -123,9 +115,7 @@ export const createMovie = (movie) => {
       owner: movie.owner,
      }),
   })
-    .then((res) => {
-      return res.json();
-    })
+    .then((res) => res.json())
     .then((res) => {
       return res;
     })
@@ -140,9 +130,7 @@ export const deleteMovie = (movie) => {
       'Authorization': localStorage.getItem('token')
     }
   })
-    .then((res) => {
-      return res.json();
-    })
+    .then((res) => res.json())
     .then((res) => {
       return res;
     })

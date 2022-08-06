@@ -1,6 +1,7 @@
 import React, { useState, useEffect  } from 'react';
 import './Profile.css';
 import Header from '../Header/Header';
+import Footer from '../Footer/Footer';
 import { Link } from 'react-router-dom';
 import { validateEmail } from '../../utils/ValidateEmail';
 
@@ -91,6 +92,7 @@ function Profile({ user, onLogOut, onUpdateUser }) {
           </form>
           <Link to='/' className='profile__link' onClick={onLogOut}>Выйти из аккаунта</Link>
       </div>
+      <Footer/>
     </div>
   );
 }

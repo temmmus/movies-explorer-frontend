@@ -1,65 +1,62 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import * as moviesApi from '../../utils/MoviesApi.js';
 import * as mainApi from '../../utils/MainApi.js';
 import './Movies.css';
 import Header from '../Header/Header';
 import SearchForm from '../SearchForm/SearchForm';
 import MoviesCardList from '../MoviesCardList/MoviesCardList';
-import UploadButton from '../UploadButton/UploadButton';
 import Loader from '../Loader/Loader';
 import Footer from '../Footer/Footer';
 
-function Movies() {
-  const [beatfilmMovies, setMovies] = useState([]);
-  const [filteredMovies, setFilteredMovies] = useState([]);
+function Movies({ movies }) {
+  // const [movies, setMovies] = useState([]);
+  const [searchResult, setSearchResult] = useState([]);
   const [loading, setLoading] = useState(false)
+  // const [searchParams, setSearchParams] = useState({});
 
-  useEffect(() => {
-    moviesApi
-      .getMovies()
-      .then((res) => {
-        setMovies(res);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }, []);
+  // useEffect(() => {
+  //   setSearchParams({
+  //     text: localStorage.getItem('searchValue'),
+  //     filter: localStorage.getItem('toggle')
+  //   });
+  // }, []);
 
-  function filterMovies(searchValue, searchFilter) 
+  function findMovies(params) 
   {
+    console.log(params.searchFilter)
+
     setLoading(true);
-    var result = [];
-  
-    if (searchFilter) {
-      result = beatfilmMovies.filter(movie => movie.duration < 40 && movie.nameRU.toUpperCase().includes(searchValue.toUpperCase()))
+
+    if (params.searchFilter) {
+      setSearchResult(movies.filter(movie => movie.duration < 40 && movie.nameRU.toUpperCase().includes(params.searchText.toUpperCase())));
     } else {
-      result = beatfilmMovies.filter(movie => movie.nameRU.toUpperCase().includes(searchValue.toUpperCase()));
+      setSearchResult(movies.filter(movie => movie.nameRU.toUpperCase().includes(params.searchText.toUpperCase())));
     }
     
-    setFilteredMovies(result);
-    // setTimeout(() => setFilteredMovies(result), 2000);
+    // setTimeout(() => setSearchResult(searchFilter), 2000);
     setLoading(false);
   }
 
   function movieLike(movie) {
       mainApi.createMovie(movie)
           .then((savedMovie) => {
-            setFilteredMovies((state) => state.map((c) => (c.id === movie._id ? savedMovie : c)))
+            // setMoviesSaved((state) => state.filter((c) => c._id !== deletedMovie))   
+            setSearchResult((state) => state.map((c) => (c.id === movie._id ? savedMovie : c)))
+            // setSearchResult((state) => console.log(state))
           })
           .catch((err) => {
             console.log(err);
           });
   }
 
+
   return (
     <div className="page">
       <Header loggedIn={true}/>
       <main className="movies">
-        <SearchForm filterMovies={filterMovies}/>
-        <MoviesCardList movies={filteredMovies} movieLike={movieLike}/>
+        <SearchForm findMovies={findMovies} />
+        <MoviesCardList movies={searchResult} movieLike={movieLike}/>
         {(loading === true) ? <Loader /> : null}
-        {(filteredMovies.length === 0 && loading === false) ? <p className="movies__result-message">Ничего не найдено</p> : null}
-        {(filteredMovies.length > 6) && <UploadButton/>}     
+        {(searchResult.length === 0 && loading === false) ? <p className="movies__result-message">Ничего не найдено</p> : null}
       </main>
       <Footer/>
     </div>
