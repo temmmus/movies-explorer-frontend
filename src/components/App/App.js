@@ -71,6 +71,7 @@ function App() {
         setLoggedIn(true);
         checkCurrentUser();
         navigate('/movies');
+        getMovies();
       }
     })
     .catch((err) => {
@@ -87,6 +88,7 @@ function App() {
         setLoggedIn(true);
         checkCurrentUser();
         navigate('/movies');
+        getMovies();
       }
     })
     .catch((err) => {
