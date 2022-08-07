@@ -4,42 +4,62 @@ import './MoviesSaved.css';
 import Header from '../Header/Header';
 import SearchForm from '../SearchForm/SearchForm';
 import MoviesCardList from '../MoviesCardList/MoviesCardList';
+import Loader from '../Loader/Loader';
 import Footer from '../Footer/Footer';
 
-function MoviesSaved() {
+function MoviesSaved({ movies }) {
+  const [searchResult, setSearchResult] = useState([]);
+  const [loading, setLoading] = useState(false);
 
-  const [savedMovies, setMoviesSaved] = useState([]);
+  function findMovies({ params }) {
+    setLoading(true);
 
-  useEffect(() => {
+    setSearchResult([]);
+
+    setTimeout(() => {
+      if (params.filter) {
+        setSearchResult(
+          movies.filter(
+            (movie) =>
+              movie.duration < 40 &&
+              movie.nameRU.toUpperCase().includes(params.text.toUpperCase())
+          )
+        );
+        setLoading(false);
+      } else {
+        setSearchResult(
+          movies.filter((movie) =>
+            movie.nameRU.toUpperCase().includes(params.text.toUpperCase())
+          )
+        );
+        setLoading(false);
+      }
+    }, 1000);
+  }
+
+  function movieLike(movie) {
     mainApi
-      .getMoviesSaved()
-      .then((res) => {
-        setMoviesSaved(res);
+      .deleteMovie(movie)
+      .then((deletedMovie) => {
+        setSearchResult((state) => state.filter((c) => c.id !== deletedMovie));
       })
       .catch((err) => {
         console.log(err);
       });
-  }, []);
-
-  function movieLike(movie) {
-      mainApi.deleteMovie(movie)
-        .then((deletedMovie) => {
-          setMoviesSaved((state) => state.filter((c) => c._id !== deletedMovie))          
-        })
-        .catch((err) => {
-          console.log(err);
-        });
   }
 
   return (
-    <div className="page">
-      <Header loggedIn={true}/>
-      <main className="movies-saved">
-        <SearchForm/>
-        <MoviesCardList movies={savedMovies} movieLike={movieLike}/>
-          {(savedMovies.length === 0) ? <p className="movies-saved__result-message">Здесь пока ничего нет</p> : null}
+    <div className='page'>
+      <Header loggedIn={true} />
+      <main className='movies-saved'>
+        <SearchForm findMovies={findMovies} />
+        <MoviesCardList movies={searchResult} movieLike={movieLike} />
+        {loading === true ? <Loader /> : null}
+        {searchResult.length === 0 && loading === false ? (
+          <p className='movies-saved__result-message'>Здесь пока ничего нет</p>
+        ) : null}
       </main>
-      <Footer/>
+      <Footer />
     </div>
   );
 }

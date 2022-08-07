@@ -8,7 +8,7 @@ export const register = (name, email, password) => {
       Accept: 'application/json',
       'Content-Type': 'application/json',
     },
-    body: JSON.stringify({name, email, password }),
+    body: JSON.stringify({ name, email, password }),
   })
     .then((res) => res.json())
     .then((res) => {
@@ -52,8 +52,8 @@ export const getUserInfo = () => {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',
-      'Authorization': localStorage.getItem('token')
-    }
+      Authorization: localStorage.getItem('token'),
+    },
   })
     .then((res) => res.json())
     .then((res) => {
@@ -67,15 +67,15 @@ export const patchUserInfo = (name, email) => {
     method: 'PATCH',
     headers: {
       'Content-Type': 'application/json',
-      'Authorization': localStorage.getItem('token')
+      Authorization: localStorage.getItem('token'),
     },
     body: JSON.stringify({ name: name, email: email }),
   })
-  .then((res) => res.json())
-  .then((res) => {
-    return res;
-  })
-  .catch((err) => console.log(err));
+    .then((res) => res.json())
+    .then((res) => {
+      return res;
+    })
+    .catch((err) => console.log(err));
 };
 
 export const getMoviesSaved = () => {
@@ -83,8 +83,8 @@ export const getMoviesSaved = () => {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',
-      'Authorization': localStorage.getItem('token')
-    }
+      Authorization: localStorage.getItem('token'),
+    },
   })
     .then((res) => res.json())
     .then((res) => {
@@ -98,22 +98,23 @@ export const createMovie = (movie) => {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
-      'Authorization': localStorage.getItem('token')
+      Authorization: localStorage.getItem('token'),
     },
-    body: JSON.stringify({ 
-      country: movie.country, 
+    body: JSON.stringify({
+      country: movie.country,
       director: movie.director,
       duration: movie.duration,
       year: movie.year,
       description: movie.description,
       image: 'https://api.nomoreparties.co' + movie.image.url,
       trailerLink: movie.trailerLink,
-      thumbnail: 'https://api.nomoreparties.co' + movie.image.formats.thumbnail.url,
-      movieId: movie.id,
+      thumbnail:
+        'https://api.nomoreparties.co' + movie.image.formats.thumbnail.url,
+      id: movie.id,
       nameRU: movie.nameRU,
       nameEN: movie.nameEN,
       owner: movie.owner,
-     }),
+    }),
   })
     .then((res) => res.json())
     .then((res) => {
@@ -123,12 +124,12 @@ export const createMovie = (movie) => {
 };
 
 export const deleteMovie = (movie) => {
-  return fetch(`${BASE_URL}/movies/${movie._id}`, {
+  return fetch(`${BASE_URL}/movies/${movie.id}`, {
     method: 'DELETE',
     headers: {
       'Content-Type': 'application/json',
-      'Authorization': localStorage.getItem('token')
-    }
+      Authorization: localStorage.getItem('token'),
+    },
   })
     .then((res) => res.json())
     .then((res) => {

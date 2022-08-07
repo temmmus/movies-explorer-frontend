@@ -48,6 +48,13 @@
     color: #A0A0A0;
 }
 
+/* .card__save-button {
+    width: 30%;
+    height: 30px;
+    margin-top: 18px;
+    border-radius: 20px; 
+    border: none;
+} */
 .card__save-button {
     width: 30%;
     height: 30px;
@@ -55,25 +62,31 @@
     border-radius: 20px; 
     border: none;
 }
-.card__save-button:hover {
-    opacity: 0.8;
-    cursor: pointer;
-}
-.card__save-button_type_inactive:before {
+.card__save-button:before {
     content: 'Сохранить';
     background-color: #F9F9F9;
     font-weight: 400;
     font-size: 12px;
     line-height: 11px;
 }
-.card__save-button_type_active {
+.card__save-button:hover {
+    opacity: 0.8;
+    cursor: pointer;
+}
+.card__save-button_type_liked  {
     background-color: #FF3055;
     background-image: url('../../images/icon-tick.svg');
     background-repeat: no-repeat;
     background-position: center;
 }
-.card__save-button_type_cancel {
+.card__save-button_type_liked:before  {
+    content: '';
+}
+.card__save-button_type_remove  {
     background-image: url('../../images/icon-cross.svg');
     background-repeat: no-repeat;
     background-position: center;
+}
+.card__save-button_type_remove:before  {
+    content: '';
 }

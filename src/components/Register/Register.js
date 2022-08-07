@@ -3,26 +3,21 @@ import './Register.css';
 import Logo from '../Logo/Logo';
 import Footer from '../Footer/Footer';
 import { Link } from 'react-router-dom';
-import { validateEmail } from '../../utils/ValidateEmail';
+
 
 function Register({ onRegister }) {
-
   const [values, setValues] = useState({});
   const [errors, setErrors] = useState({});
   const [isValid, setIsValid] = useState(false);
 
-  const handleChange = (event) => {
-    const target = event.target;
+  const handleChange = (e) => {
+    const target = e.target;
     const name = target.name;
     const value = target.value;
     
     setValues({...values, [name]: value});
     setErrors({...errors, [name]: target.validationMessage });
     setIsValid(target.closest("form").checkValidity());
-
-    if (!validateEmail(values.email)) {
-      setErrors({...errors, email: 'Указан невалидный email'});
-    } 
   };
 
   const handleSubmit = (e) => {
@@ -57,6 +52,7 @@ function Register({ onRegister }) {
                 name='email'
                 className='register__input'
                 onChange={handleChange}
+                pattern='[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$'
                 required
               />
           <p className='register__error-message'>{errors.email}</p>

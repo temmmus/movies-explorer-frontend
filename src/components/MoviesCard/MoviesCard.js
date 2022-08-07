@@ -6,10 +6,9 @@ function MoviesCard({ movie, onMovieLike }) {
 
   const currentUser = React.useContext(CurrentUserContext);
 
-
-  const movieLikeButtonClassName = `card__save-button ${
-    movie.owner === currentUser._id ? 'card__save-button_type_cancel' : 'card__save-button_type_inactive'
-  }`;
+  const movieLikeButtonClassName = `card__save-button
+    ${movie.isLiked ? 'card__save-button_type_liked' : ''}
+    ${movie.owner === currentUser._id ? 'card__save-button_type_remove' : ''}`;
 
   const duration = (duration) => {
     if (duration < 60) {
@@ -33,11 +32,7 @@ function MoviesCard({ movie, onMovieLike }) {
       <a className='card__link' href={movie.trailerLink} target='_blank' rel="noreferrer">
         <img className='card__image' alt='Постер' src={(movie.image.url) ? 'https://api.nomoreparties.co' + movie.image.url : movie.image}/>
       </a>
-      <button
-        type='button'
-        className={movieLikeButtonClassName}
-        onClick={handleLikeClick}
-      ></button>
+      <button type='button' className={movieLikeButtonClassName} onClick={handleLikeClick}></button>      
     </li>
   );
 }

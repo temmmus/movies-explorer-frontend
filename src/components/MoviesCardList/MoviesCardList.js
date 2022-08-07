@@ -6,7 +6,6 @@ import MoviesCard from '../MoviesCard/MoviesCard';
 function MoviesCardList({ movies, movieLike }) {
 
   var count;
-
   if (window.innerWidth > 780) {
     count = 12;
   } else if (window.innerWidth < 780 && window.innerWidth > 460 ) {
@@ -25,7 +24,7 @@ function MoviesCardList({ movies, movieLike }) {
 
   return (
     <>
-      <ul className="card-list" >
+      <ul className="card-list">
         {moviesToRender.map((movie) => (  
           <MoviesCard
             key={(movie.id) ? movie.id : movie._id}
