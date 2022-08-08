@@ -1,19 +1,15 @@
 import React, { useState } from 'react';
 import * as mainApi from '../../utils/MainApi.js';
-import './Movies.css';
+import './MoviesSaved.css';
 import Header from '../Header/Header';
 import SearchForm from '../SearchForm/SearchForm';
 import MoviesCardList from '../MoviesCardList/MoviesCardList';
 import Loader from '../Loader/Loader';
 import Footer from '../Footer/Footer';
 
-function Movies({ movies }) {
-  const [searchResult, setSearchResult] = useState(
-    JSON.parse(localStorage.getItem('searchResult')) || []
-  );
+function MoviesSaved({ movies }) {
+  const [searchResult, setSearchResult] = useState(movies);
   const [loading, setLoading] = useState(false);
-
-  localStorage.setItem('searchResult', JSON.stringify(searchResult));
 
   function findMovies({ params }) {
     setLoading(true);
@@ -42,42 +38,25 @@ function Movies({ movies }) {
   }
 
   function movieLike(movie) {
-    if (movie.isLiked) {
-      mainApi
-        .deleteMovie(movie)
-        .then((movie) => {
-          setSearchResult((state) =>
-            state.map((c) => (c.id === movie.id ? movie : c))
-          );
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-      movie.isLiked = false;
-    } else {
-      mainApi
-        .createMovie(movie)
-        .then((movie) => {
-          setSearchResult((state) =>
-            state.map((c) => (c.id === movie._id ? movie : c))
-          );
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-      movie.isLiked = true;
-    }
+    mainApi
+      .deleteMovie(movie)
+      .then((deletedMovie) => {
+        setSearchResult((state) => state.filter((c) => c.id !== deletedMovie));
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   }
 
   return (
     <div className='page'>
       <Header loggedIn={true} />
-      <main className='movies'>
+      <main className='movies-saved'>
         <SearchForm findMovies={findMovies} />
         <MoviesCardList movies={searchResult} movieLike={movieLike} />
         {loading === true ? <Loader /> : null}
         {searchResult.length === 0 && loading === false ? (
-          <p className='movies__result-message'>Ничего не найдено</p>
+          <p className='movies-saved__result-message'>Здесь пока ничего нет</p>
         ) : null}
       </main>
       <Footer />
@@ -85,4 +64,4 @@ function Movies({ movies }) {
   );
 }
 
-export default Movies;
+export default MoviesSaved;

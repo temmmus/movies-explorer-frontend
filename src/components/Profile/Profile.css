@@ -2,6 +2,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    min-height: 100vh;
 }
 
 .profile__title {
@@ -39,8 +40,33 @@
     line-height: 13.31px;
 }
 
+.profile__error-message {
+    margin: 0;
+    margin-top: 10px;
+    text-align: right;
+    font-weight: 400;
+    font-size: 10px;
+    line-height: 10px;
+    color: #FF3055;
+}
+
+.profile__status-message {
+    padding-top: 100px;
+    text-align: center;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 0px;
+
+}
+.profile__status-message_type_success {
+    color: #2BE080;
+}
+.profile__status-message_type_error {
+    color: #FF3055;
+}
+
 .profile__button {
-    margin-top: 200px;
+    margin-top: 100px;
     margin-bottom: 16px;
     text-align: center;
     border: none;
@@ -52,8 +78,12 @@
     transition: opacity 0.2s linear;
 }
 .profile__button:hover {
-    opacity: 0.8;
+    opacity: 0.6;
     cursor: pointer;
+}
+.profile__button_disabled:hover {
+    opacity: 1;
+    cursor: auto;
 }
 
 .profile__link {
@@ -66,7 +96,7 @@
     transition: opacity 0.2s linear;
 }
 .profile__link:hover {
-    opacity: 0.8;
+    opacity: 0.6;
     cursor: pointer;
 }
 

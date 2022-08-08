@@ -1,10 +1,10 @@
-.movies {
+.movies-saved {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
 }
 
-.movies__result-message {
+.movies-saved__result-message {
   margin: 0 auto;
   margin-bottom: 100px;
   font-weight: 400;
