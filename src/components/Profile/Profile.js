@@ -1,12 +1,12 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
+import { CurrentUserContext } from '../../contexts/CurrentUserContext.js';
 import './Profile.css';
 import Header from '../Header/Header';
 import Footer from '../Footer/Footer';
 import { Link } from 'react-router-dom';
-import { CurrentUserContext } from '../../contexts/CurrentUserContext.js';
 
 function Profile({ onLogOut, onUpdateUser }) {
-  const currentUser = React.useContext(CurrentUserContext);
+  const currentUser = useContext(CurrentUserContext);
 
   const [values, setValues] = useState({
     name: currentUser.name,
@@ -37,13 +37,17 @@ function Profile({ onLogOut, onUpdateUser }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    onUpdateUser({ values }).then((res) => {
-      setIsUpdated(
-        res.message
-          ? { status: false, message: res.message }
-          : { status: true, message: 'Данные успешно обновлены' }
-      );
-    });
+    onUpdateUser({ values })
+      .then((res) => {
+        setIsUpdated(
+          res.message
+            ? { status: false, message: res.message }
+            : { status: true, message: 'Данные успешно обновлены' }
+        );
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
   return (

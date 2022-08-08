@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import * as mainApi from '../../utils/MainApi.js';
 import './MoviesSaved.css';
 import Header from '../Header/Header';
@@ -8,7 +8,7 @@ import Loader from '../Loader/Loader';
 import Footer from '../Footer/Footer';
 
 function MoviesSaved({ movies }) {
-  const [searchResult, setSearchResult] = useState([]);
+  const [searchResult, setSearchResult] = useState(movies);
   const [loading, setLoading] = useState(false);
 
   function findMovies({ params }) {

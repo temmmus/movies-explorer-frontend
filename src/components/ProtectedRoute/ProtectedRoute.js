@@ -1,11 +1,7 @@
-import { Navigate } from 'react-router-dom';
+import { Navigate, Outlet } from 'react-router-dom';
 
 const ProtectedRoute = ({ loggedIn, children }) => {
-    if (!loggedIn) {
-        return <Navigate to="/" />;
-    }
-
-    return children;
+  return loggedIn ? <Outlet /> : <Navigate to='/' />;
 };
 
 export default ProtectedRoute;

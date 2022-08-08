@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { CurrentUserContext } from '../../contexts/CurrentUserContext.js';
 import './App.css';
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 import Main from '../Main/Main';
@@ -12,7 +13,6 @@ import NotFound from '../NotFound/NotFound';
 import { useNavigate, Routes, Route } from 'react-router-dom';
 import * as moviesApi from '../../utils/MoviesApi.js';
 import * as mainApi from '../../utils/MainApi.js';
-import { CurrentUserContext } from '../../contexts/CurrentUserContext.js';
 
 function App() {
   const navigate = useNavigate();
@@ -24,8 +24,8 @@ function App() {
   useEffect(() => {
     const token = localStorage.getItem('token');
     if (token) {
-      checkCurrentUser();
       checkToken(token);
+      checkCurrentUser();
       getMovies();
       getSavedMovies();
     }
@@ -145,33 +145,32 @@ function App() {
           />
           <Route path='/signin' element={<Login onLogin={handleLogin} />} />
 
-          <Route
-            path='/profile'
-            element={
-              <ProtectedRoute loggedIn={loggedIn}>
+          <Route element={<ProtectedRoute loggedIn={loggedIn} />}>
+            <Route
+              element={
                 <Profile
                   onLogOut={handleLogOut}
                   onUpdateUser={handleUpdateUser}
                 />
-              </ProtectedRoute>
-            }
-          />
-          <Route
-            path='/movies'
-            element={
-              <ProtectedRoute loggedIn={loggedIn}>
-                <Movies movies={beatfilmMovies} />
-              </ProtectedRoute>
-            }
-          />
-          <Route
-            path='/movies-saved'
-            element={
-              <ProtectedRoute loggedIn={loggedIn}>
-                <MoviesSaved movies={savedMovies} />
-              </ProtectedRoute>
-            }
-          />
+              }
+              path='/profile'
+              exact
+            />
+          </Route>
+          <Route element={<ProtectedRoute loggedIn={loggedIn} />}>
+            <Route
+              element={<Movies movies={beatfilmMovies} />}
+              path='/movies'
+              exact
+            />
+          </Route>
+          <Route element={<ProtectedRoute loggedIn={loggedIn} />}>
+            <Route
+              element={<MoviesSaved movies={savedMovies} />}
+              path='/movies-saved'
+              exact
+            />
+          </Route>
 
           <Route path='*' element={<NotFound />} />
         </Routes>
